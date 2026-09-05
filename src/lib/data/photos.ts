@@ -12,6 +12,8 @@ export const heroPhoto = {
 export const servicePhotos: Record<string, string> = {
   "depannage-urgence": unsplash("photo-1671040726131-746880d06bb5", 800),
   chauffage: unsplash("photo-1517581177682-a085bb7ffb15", 800),
+  "pompe-a-chaleur": unsplash("photo-1776860150305-108ed577d7d4", 800),
+  climatisation: unsplash("photo-1700124113583-81aa99ea2aa2", 800),
   sanitaires: unsplash("photo-1584622650111-993a426fbf0a", 800),
   "recherche-de-fuite": unsplash("photo-1503789146722-cf137a3c0fea", 800),
   canalisations: unsplash("photo-1530124566582-a618bc2615dc", 800),

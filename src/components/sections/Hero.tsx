@@ -21,7 +21,7 @@ export function Hero() {
           </h1>
           <p className="mt-6 text-lg text-white/90">
             {siteConfig.companyName} intervient pour tous vos besoins en plomberie et en chauffage : dépannage,
-            installation de chauffage, sanitaires et rénovation, avec un travail soigné et des délais respectés.
+            pompe à chaleur, climatisation, sanitaires et rénovation, avec un travail soigné et des délais respectés.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Button href="/contact">Demander un devis</Button>

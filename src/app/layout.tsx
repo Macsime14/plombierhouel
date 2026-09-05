@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     default: `${siteConfig.companyName} — Plombier chauffagiste à ${siteConfig.areaDescription}`,
     template: `%s | ${siteConfig.companyName}`,
   },
-  description: `${siteConfig.companyName}, plombier chauffagiste à ${siteConfig.areaDescription} : dépannage, chauffage, sanitaires et rénovation. Devis gratuit.`,
+  description: `${siteConfig.companyName}, plombier chauffagiste à ${siteConfig.areaDescription} : dépannage, chauffage, pompe à chaleur, climatisation, sanitaires et rénovation. Devis gratuit.`,
   metadataBase: new URL(siteConfig.url),
   openGraph: {
     title: siteConfig.companyName,

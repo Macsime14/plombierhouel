@@ -1,4 +1,4 @@
-import { Wrench, Droplet, Flame, ShowerHead, Waves, Hammer } from "lucide-react";
+import { Wrench, Droplet, Flame, ShowerHead, Waves, Hammer, Thermometer, Snowflake } from "lucide-react";
 import type { Service } from "@/types/service";
 
 // TODO: adapter la liste des services aux prestations réelles du client.
@@ -18,6 +18,22 @@ export const services: Service[] = [
     description:
       "Installation, entretien et réparation de chaudières et systèmes de chauffage pour votre confort au quotidien.",
     icon: Flame,
+  },
+  {
+    slug: "pompe-a-chaleur",
+    title: "Pompe à chaleur",
+    shortDescription: "Installation et entretien de pompes à chaleur.",
+    description:
+      "Étude, installation et entretien de pompes à chaleur air/eau ou air/air pour un chauffage économique et performant.",
+    icon: Thermometer,
+  },
+  {
+    slug: "climatisation",
+    title: "Climatisation",
+    shortDescription: "Installation de systèmes de climatisation.",
+    description:
+      "Installation et entretien de systèmes de climatisation réversibles, adaptés à votre logement et à vos besoins.",
+    icon: Snowflake,
   },
   {
     slug: "sanitaires",
