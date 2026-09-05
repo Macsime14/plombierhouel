@@ -26,6 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: siteConfig.companyName,
     description: siteConfig.tagline,
+    images: ["/images/logo.png"],
     locale: "fr_FR",
     type: "website",
   },

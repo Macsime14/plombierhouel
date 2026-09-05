@@ -4,7 +4,7 @@ import { process } from "@/lib/data/process";
 
 export function ProcessSteps() {
   return (
-    <section className="py-16 sm:py-24">
+    <section className="bg-accent py-16 sm:py-24">
       <Container>
         <SectionTitle
           eyebrow="Notre méthode"

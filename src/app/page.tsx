@@ -5,6 +5,7 @@ import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Button } from "@/components/ui/Button";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
+import { Qualifications } from "@/components/sections/Qualifications";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
 import { Gallery } from "@/components/sections/Gallery";
@@ -18,7 +19,9 @@ export default function Home() {
 
       <About />
 
-      <section className="bg-accent py-16 sm:py-24">
+      <Qualifications />
+
+      <section className="py-16 sm:py-24">
         <Container>
           <SectionTitle
             eyebrow="Nos services"
@@ -39,7 +42,7 @@ export default function Home() {
 
       <ProcessSteps />
 
-      <section className="bg-accent py-16 sm:py-24">
+      <section className="py-16 sm:py-24">
         <Container>
           <SectionTitle
             eyebrow="Réalisations"
@@ -52,7 +55,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="py-16 sm:py-24">
+      <section className="bg-accent py-16 sm:py-24">
         <Container>
           <SectionTitle eyebrow="Zone d'intervention" title={`Nous intervenons à ${siteConfig.areaDescription}`} />
           <div className="mt-8">

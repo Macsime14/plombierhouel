@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
-import { Menu, Phone, X, Wrench } from "lucide-react";
+import { Menu, Phone, X } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { siteConfig } from "@/lib/data/site-config";
 
@@ -20,9 +21,7 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-neutral-100 bg-white/95 backdrop-blur">
       <Container className="flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2 font-heading font-bold text-neutral-700" onClick={() => setOpen(false)}>
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-white">
-            <Wrench size={18} />
-          </span>
+          <Image src="/images/logo.png" alt={siteConfig.companyName} width={36} height={36} className="h-9 w-9" />
           {siteConfig.companyName}
         </Link>
 

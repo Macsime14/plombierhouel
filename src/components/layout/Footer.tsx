@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, MapPin, Phone, Clock } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { siteConfig } from "@/lib/data/site-config";
@@ -8,7 +9,10 @@ export function Footer() {
     <footer className="mt-24 border-t border-neutral-100 bg-accent">
       <Container className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p className="font-heading text-lg font-bold text-neutral-700">{siteConfig.companyName}</p>
+          <div className="flex items-center gap-2">
+            <Image src="/images/logo.png" alt={siteConfig.companyName} width={32} height={32} className="h-8 w-8" />
+            <p className="font-heading text-lg font-bold text-neutral-700">{siteConfig.companyName}</p>
+          </div>
           <p className="mt-2 text-sm text-neutral-500">{siteConfig.tagline}</p>
         </div>
 
