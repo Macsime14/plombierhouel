@@ -17,7 +17,7 @@ export function ProcessSteps() {
           {process.steps.map((step, index) => {
             const Icon = step.icon;
             return (
-              <div key={step.title} className="relative rounded-2xl border border-neutral-100 bg-white p-6 shadow-sm">
+              <div key={step.title} className="relative rounded-2xl border border-neutral-100 bg-white p-6 shadow-sm dark:border-stone-800 dark:bg-stone-900">
                 <span className="absolute -top-3 -left-3 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-bold text-white">
                   {index + 1}
                 </span>

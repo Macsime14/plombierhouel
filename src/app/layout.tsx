@@ -44,9 +44,20 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     url: siteConfig.url,
   };
 
+  const themeInitScript = `
+    (function () {
+      try {
+        var stored = localStorage.getItem("theme");
+        var isDark = stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (isDark) document.documentElement.classList.add("dark");
+      } catch (e) {}
+    })();
+  `;
+
   return (
-    <html lang="fr" className={`${inter.variable} ${jakarta.variable} h-full antialiased`}>
+    <html lang="fr" className={`${inter.variable} ${jakarta.variable} h-full antialiased`} suppressHydrationWarning>
       <body className="min-h-full flex flex-col">
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <Header />
         <main className="flex-1">{children}</main>

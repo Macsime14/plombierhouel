@@ -9,7 +9,8 @@ export function Hero() {
   return (
     <section className="relative isolate min-h-[560px] overflow-hidden">
       <Image src={heroPhoto.src} alt={heroPhoto.alt} fill priority sizes="100vw" className="object-cover" />
-      <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/90 via-primary-dark/70 to-primary-dark/40" />
+      {/* Couleurs figees (independantes du theme clair/sombre) : cet overlay habille toujours la photo de la meme facon */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0b5c56]/90 via-[#0b5c56]/70 to-[#0b5c56]/40" />
 
       <Container className="relative py-20 lg:py-28">
         <div className="max-w-xl">

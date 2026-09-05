@@ -17,7 +17,7 @@ export function Qualifications() {
           {qualifications.map((qualification) => {
             const Icon = qualification.icon;
             return (
-              <div key={qualification.title} className="rounded-2xl bg-white p-6 text-center shadow-sm">
+              <div key={qualification.title} className="rounded-2xl bg-white p-6 text-center shadow-sm dark:bg-stone-900">
                 <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-primary-light text-primary">
                   <Icon size={22} />
                 </span>

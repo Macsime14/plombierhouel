@@ -6,6 +6,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { contactSchema, type ContactFormValues } from "@/lib/validation/contactSchema";
 
+const fieldClass =
+  "mt-1 w-full rounded-lg border border-neutral-200 bg-white px-3 py-2 text-sm text-neutral-700 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:border-stone-700 dark:bg-stone-900";
+
 const serviceTypes = [
   "Dépannage",
   "Chauffage",
@@ -67,7 +70,7 @@ export function ContactForm() {
           <input
             id="name"
             type="text"
-            className="mt-1 w-full rounded-lg border border-neutral-200 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            className={fieldClass}
             {...register("name")}
           />
           {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>}
@@ -80,7 +83,7 @@ export function ContactForm() {
           <input
             id="phone"
             type="tel"
-            className="mt-1 w-full rounded-lg border border-neutral-200 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            className={fieldClass}
             {...register("phone")}
           />
           {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>}
@@ -94,7 +97,7 @@ export function ContactForm() {
         <input
           id="email"
           type="email"
-          className="mt-1 w-full rounded-lg border border-neutral-200 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+          className={fieldClass}
           {...register("email")}
         />
         {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>}
@@ -106,7 +109,7 @@ export function ContactForm() {
         </label>
         <select
           id="serviceType"
-          className="mt-1 w-full rounded-lg border border-neutral-200 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+          className={fieldClass}
           {...register("serviceType")}
         >
           {serviceTypes.map((type) => (
@@ -124,7 +127,7 @@ export function ContactForm() {
         <textarea
           id="message"
           rows={5}
-          className="mt-1 w-full rounded-lg border border-neutral-200 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+          className={fieldClass}
           {...register("message")}
         />
         {errors.message && <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>}
