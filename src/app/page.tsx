@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Button } from "@/components/ui/Button";
 import { Hero } from "@/components/sections/Hero";
+import { About } from "@/components/sections/About";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
 import { Gallery } from "@/components/sections/Gallery";
 import { InterventionZone } from "@/components/sections/InterventionZone";
@@ -14,7 +15,9 @@ export default function Home() {
     <>
       <Hero />
 
-      <section className="py-16 sm:py-24">
+      <About />
+
+      <section className="bg-accent py-16 sm:py-24">
         <Container>
           <SectionTitle
             eyebrow="Nos services"

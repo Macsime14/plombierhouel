@@ -26,3 +26,9 @@ export const galleryPhotos = [
   { src: unsplash("photo-1676210133055-eab6ef033ce3", 800), alt: "Intervention de plomberie" },
   { src: unsplash("photo-1676210134050-6f12c6898395", 800), alt: "Plombier sur un chantier" },
 ];
+
+// TODO: remplacer par un vrai portrait d'Antoine dès que possible.
+export const aboutPhoto = {
+  src: unsplash("photo-1530143311094-34d807799e8f", 900),
+  alt: "Coureur d'ultra-trail en montagne",
+};
