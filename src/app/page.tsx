@@ -21,7 +21,7 @@ export default function Home() {
         <Container>
           <SectionTitle
             eyebrow="Nos services"
-            title="Une expertise complète en plomberie"
+            title="Une expertise complète en plomberie et chauffage"
             description="Du simple dépannage aux projets de rénovation, nous intervenons rapidement et avec soin."
           />
           <div className="mt-10">
@@ -60,7 +60,7 @@ export default function Home() {
 
       <section className="py-16 sm:py-24">
         <Container className="flex flex-col items-center gap-6 rounded-3xl bg-primary px-6 py-14 text-center sm:px-12">
-          <h2 className="text-3xl font-bold text-white">Un projet ou une urgence de plomberie ?</h2>
+          <h2 className="text-3xl font-bold text-white">Un projet ou une urgence de plomberie ou de chauffage ?</h2>
           <p className="max-w-xl text-primary-light/90 text-white/90">
             Contactez-nous dès maintenant pour un devis gratuit ou une intervention rapide.
           </p>

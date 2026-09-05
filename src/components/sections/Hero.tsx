@@ -20,14 +20,14 @@ export function Hero() {
       <Container className="relative py-20 lg:py-28">
         <div className="max-w-xl">
           <p className="text-sm font-semibold uppercase tracking-wide text-white/80">
-            Plombier à {siteConfig.areaDescription}
+            Plombier chauffagiste à {siteConfig.areaDescription}
           </p>
           <h1 className="mt-3 text-4xl font-bold tracking-tight text-white sm:text-5xl">
-            Un plombier fiable, disponible pour vos travaux et dépannages
+            Un plombier chauffagiste fiable, disponible pour vos travaux et dépannages
           </h1>
           <p className="mt-6 text-lg text-white/90">
-            {siteConfig.companyName} intervient pour tous vos besoins en plomberie : dépannage, chauffage,
-            sanitaires et rénovation, avec un travail soigné et des délais respectés.
+            {siteConfig.companyName} intervient pour tous vos besoins en plomberie et en chauffage : dépannage,
+            installation de chauffage, sanitaires et rénovation, avec un travail soigné et des délais respectés.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Button href="/contact">Demander un devis</Button>

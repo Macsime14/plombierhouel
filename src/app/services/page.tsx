@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/data/site-config";
 
 export const metadata: Metadata = {
   title: "Nos services",
-  description: `Découvrez tous les services de plomberie proposés par ${siteConfig.companyName} : dépannage, chauffage, sanitaires, recherche de fuite et rénovation.`,
+  description: `Découvrez tous les services de plomberie et de chauffage proposés par ${siteConfig.companyName} : dépannage, chauffage, sanitaires, recherche de fuite et rénovation.`,
 };
 
 export default function ServicesPage() {
@@ -15,7 +15,7 @@ export default function ServicesPage() {
       <Container>
         <SectionTitle
           eyebrow="Nos services"
-          title="Toutes nos prestations de plomberie"
+          title="Toutes nos prestations de plomberie et de chauffage"
           description="Chaque intervention est réalisée avec le même souci du détail, que ce soit une urgence ou un projet planifié."
         />
         <div className="mt-10">

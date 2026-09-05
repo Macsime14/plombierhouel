@@ -12,10 +12,10 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: `${siteConfig.companyName} — Plombier à ${siteConfig.areaDescription}`,
+    default: `${siteConfig.companyName} — Plombier chauffagiste à ${siteConfig.areaDescription}`,
     template: `%s | ${siteConfig.companyName}`,
   },
-  description: `${siteConfig.companyName}, plombier à ${siteConfig.areaDescription} : dépannage, chauffage, sanitaires et rénovation. Devis gratuit.`,
+  description: `${siteConfig.companyName}, plombier chauffagiste à ${siteConfig.areaDescription} : dépannage, chauffage, sanitaires et rénovation. Devis gratuit.`,
   metadataBase: new URL(siteConfig.url),
   openGraph: {
     title: siteConfig.companyName,
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Plumber",
+    "@type": ["Plumber", "HVACBusiness"],
     name: siteConfig.companyName,
     telephone: siteConfig.phone,
     email: siteConfig.email,
