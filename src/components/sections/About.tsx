@@ -1,11 +1,11 @@
 import Image from "next/image";
-import { ShieldCheck, HardHat, Mountain } from "lucide-react";
+import { ShieldCheck, HardHat, Mountain, Users } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { about } from "@/lib/data/about";
 import { aboutPhoto } from "@/lib/data/photos";
 
-const icons = [HardHat, ShieldCheck, Mountain];
+const icons = [Users, HardHat, ShieldCheck, Mountain];
 
 export function About() {
   return (
