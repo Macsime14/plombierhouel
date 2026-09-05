@@ -24,7 +24,7 @@ export function ProcessSteps() {
                 <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-light text-primary">
                   <Icon size={22} />
                 </span>
-                <h3 className="mt-4 text-lg font-semibold text-neutral-700">{step.title}</h3>
+                <h3 className="mt-4 font-heading text-lg font-semibold text-neutral-700">{step.title}</h3>
                 <p className="mt-2 text-sm text-neutral-500">{step.description}</p>
               </div>
             );

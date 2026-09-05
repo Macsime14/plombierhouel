@@ -19,7 +19,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-neutral-100 bg-white/95 backdrop-blur">
       <Container className="flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 font-bold text-neutral-700" onClick={() => setOpen(false)}>
+        <Link href="/" className="flex items-center gap-2 font-heading font-bold text-neutral-700" onClick={() => setOpen(false)}>
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-white">
             <Wrench size={18} />
           </span>
@@ -36,7 +36,7 @@ export function Header() {
 
         <a
           href={siteConfig.phoneHref}
-          className="hidden items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary-dark md:inline-flex"
+          className="hidden items-center gap-2 rounded-full bg-warm px-4 py-2 text-sm font-semibold text-white hover:bg-warm-dark md:inline-flex"
         >
           <Phone size={16} />
           {siteConfig.phone}
@@ -67,7 +67,7 @@ export function Header() {
             ))}
             <a
               href={siteConfig.phoneHref}
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white"
+              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-warm px-4 py-2 text-sm font-semibold text-white"
             >
               <Phone size={16} />
               {siteConfig.phone}

@@ -12,7 +12,13 @@ export function About() {
     <section className="py-16 sm:py-24">
       <Container className="grid items-center gap-12 lg:grid-cols-2">
         <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl">
-          <Image src={aboutPhoto.src} alt={aboutPhoto.alt} fill className="object-cover" />
+          <Image
+            src={aboutPhoto.src}
+            alt={aboutPhoto.alt}
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover"
+          />
         </div>
 
         <div>

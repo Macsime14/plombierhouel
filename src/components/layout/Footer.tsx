@@ -8,7 +8,7 @@ export function Footer() {
     <footer className="mt-24 border-t border-neutral-100 bg-accent">
       <Container className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p className="text-lg font-bold text-neutral-700">{siteConfig.companyName}</p>
+          <p className="font-heading text-lg font-bold text-neutral-700">{siteConfig.companyName}</p>
           <p className="mt-2 text-sm text-neutral-500">{siteConfig.tagline}</p>
         </div>
 

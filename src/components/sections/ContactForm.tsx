@@ -133,7 +133,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-dark disabled:opacity-60"
+        className="inline-flex items-center justify-center gap-2 rounded-full bg-warm px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-warm-dark disabled:opacity-60"
       >
         {isSubmitting && <Loader2 size={16} className="animate-spin" />}
         Envoyer ma demande

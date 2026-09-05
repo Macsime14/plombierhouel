@@ -8,13 +8,7 @@ import { heroPhoto } from "@/lib/data/photos";
 export function Hero() {
   return (
     <section className="relative isolate min-h-[560px] overflow-hidden">
-      <Image
-        src={heroPhoto.src}
-        alt={heroPhoto.alt}
-        fill
-        priority
-        className="object-cover"
-      />
+      <Image src={heroPhoto.src} alt={heroPhoto.alt} fill priority sizes="100vw" className="object-cover" />
       <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/90 via-primary-dark/70 to-primary-dark/40" />
 
       <Container className="relative py-20 lg:py-28">
@@ -22,7 +16,7 @@ export function Hero() {
           <p className="text-sm font-semibold uppercase tracking-wide text-white/80">
             Plombier chauffagiste à {siteConfig.areaDescription}
           </p>
-          <h1 className="mt-3 text-4xl font-bold tracking-tight text-white sm:text-5xl">
+          <h1 className="mt-3 font-heading text-4xl font-bold tracking-tight text-white sm:text-5xl">
             Un plombier chauffagiste fiable, disponible pour vos travaux et dépannages
           </h1>
           <p className="mt-6 text-lg text-white/90">

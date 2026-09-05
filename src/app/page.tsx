@@ -63,8 +63,8 @@ export default function Home() {
 
       <section className="py-16 sm:py-24">
         <Container className="flex flex-col items-center gap-6 rounded-3xl bg-primary px-6 py-14 text-center sm:px-12">
-          <h2 className="text-3xl font-bold text-white">Un projet ou une urgence de plomberie ou de chauffage ?</h2>
-          <p className="max-w-xl text-primary-light/90 text-white/90">
+          <h2 className="font-heading text-3xl font-bold text-white">Un projet ou une urgence de plomberie ou de chauffage ?</h2>
+          <p className="max-w-xl text-white/90">
             Contactez-nous dès maintenant pour un devis gratuit ou une intervention rapide.
           </p>
           <Button href="/contact" variant="secondary">

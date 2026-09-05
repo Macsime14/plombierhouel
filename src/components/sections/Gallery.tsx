@@ -10,6 +10,7 @@ export function Gallery() {
             src={photo.src}
             alt={photo.alt}
             fill
+            sizes="(min-width: 640px) 33vw, 50vw"
             className="object-cover transition-transform duration-300 hover:scale-105"
           />
         </div>
