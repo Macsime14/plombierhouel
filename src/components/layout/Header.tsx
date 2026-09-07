@@ -55,7 +55,7 @@ export function Header() {
           <ThemeToggle />
           <a
             href={siteConfig.phoneHref}
-            className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-warm px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-warm-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-dark"
+            className="inline-flex cursor-pointer items-center gap-2 rounded-md bg-warm px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-warm-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-dark"
           >
             <Phone size={16} />
             {siteConfig.phone}
@@ -90,7 +90,7 @@ export function Header() {
             ))}
             <a
               href={siteConfig.phoneHref}
-              className="mt-2 inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-warm px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-warm-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-dark"
+              className="mt-2 inline-flex cursor-pointer items-center justify-center gap-2 rounded-md bg-warm px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-warm-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-dark"
             >
               <Phone size={16} />
               {siteConfig.phone}

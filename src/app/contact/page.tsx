@@ -26,7 +26,7 @@ export default function ContactPage() {
           </div>
 
           <div className="space-y-4 lg:col-span-2">
-            <div className="rounded-2xl bg-accent p-6">
+            <div className="rounded-lg bg-accent p-6">
               <p className="flex items-center gap-3 text-sm text-neutral-700">
                 <Phone size={18} className="text-primary" />
                 <a href={siteConfig.phoneHref} className="hover:text-primary">

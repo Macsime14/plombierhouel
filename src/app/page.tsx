@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { Qualifications } from "@/components/sections/Qualifications";
-import { ServicesGrid } from "@/components/sections/ServicesGrid";
+import { ServicesList } from "@/components/sections/ServicesList";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
 import { Gallery } from "@/components/sections/Gallery";
 import { InterventionZone } from "@/components/sections/InterventionZone";
@@ -23,13 +23,9 @@ export default function Home() {
 
       <section className="py-16 sm:py-24">
         <Container>
-          <SectionTitle
-            eyebrow="Nos services"
-            title="Une expertise complète en plomberie et chauffage"
-            description="Du simple dépannage aux projets de rénovation, nous intervenons rapidement et avec soin."
-          />
-          <div className="mt-10">
-            <ServicesGrid limit={3} />
+          <SectionTitle eyebrow="Mes services" title="Ce que je fais" />
+          <div className="mt-10 max-w-2xl">
+            <ServicesList limit={5} />
           </div>
           <div className="mt-8">
             <Link
@@ -47,11 +43,7 @@ export default function Home() {
 
       <section className="py-16 sm:py-24">
         <Container>
-          <SectionTitle
-            eyebrow="Réalisations"
-            title="Un aperçu de nos chantiers"
-            description="Quelques exemples d'interventions récentes."
-          />
+          <SectionTitle eyebrow="Réalisations" title="Sur le terrain" />
           <div className="mt-10">
             <Gallery />
           </div>
@@ -68,14 +60,10 @@ export default function Home() {
       </section>
 
       <section className="py-16 sm:py-24">
-        <Container className="flex flex-col items-center gap-6 rounded-3xl bg-primary px-6 py-14 text-center sm:px-12">
-          <h2 className="font-heading text-3xl font-bold text-white">Un projet ou une urgence de plomberie ou de chauffage ?</h2>
-          <p className="max-w-xl text-white/90">
-            Contactez-nous dès maintenant pour un devis gratuit ou une intervention rapide.
-          </p>
-          <Button href="/contact" variant="secondary">
-            Demander un devis
-          </Button>
+        <Container className="flex flex-col items-center gap-6 rounded-lg bg-primary px-6 py-14 text-center sm:px-12">
+          <h2 className="font-heading text-3xl font-bold text-white">Un projet ou une urgence ?</h2>
+          <p className="max-w-xl text-white/90">Appelez-moi ou laissez-moi un message, je reviens vers vous rapidement.</p>
+          <Button href="/contact">Demander un devis</Button>
         </Container>
       </section>
     </>

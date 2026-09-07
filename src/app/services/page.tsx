@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
-import { ServicesGrid } from "@/components/sections/ServicesGrid";
+import { ServicesList } from "@/components/sections/ServicesList";
 import { siteConfig } from "@/lib/data/site-config";
 
 export const metadata: Metadata = {
@@ -13,13 +13,9 @@ export default function ServicesPage() {
   return (
     <section className="py-16 sm:py-24">
       <Container>
-        <SectionTitle
-          eyebrow="Nos services"
-          title="Toutes nos prestations de plomberie et de chauffage"
-          description="Chaque intervention est réalisée avec le même souci du détail, que ce soit une urgence ou un projet planifié."
-        />
-        <div className="mt-10">
-          <ServicesGrid />
+        <SectionTitle eyebrow="Mes services" title="Ce que je fais" />
+        <div className="mt-10 max-w-2xl">
+          <ServicesList />
         </div>
       </Container>
     </section>

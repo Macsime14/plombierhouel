@@ -7,11 +7,6 @@ export const about = {
     "Aujourd’hui, je mets cette expérience au service de mes clients, avec une attention particulière portée à la qualité du travail, au respect des délais et à la confiance qui doit s’installer tout au long d’un projet.",
     "Je suis également passionné de course à pied et d’ultra-trail. Dans le sport comme dans mon métier, j’aime aller au bout des choses. La persévérance, la régularité et le souci du travail bien fait sont des valeurs qui me ressemblent et que j’essaie d’appliquer chaque jour dans mon travail.",
   ],
-  highlights: [
-    { label: "Entreprise familiale", detail: "reprise de l'entreprise fondée par mon père, Olivier Houel" },
-    { label: "8 ans d'expérience", detail: "sur les chantiers, comme chef de chantier puis conducteur de travaux" },
-    { label: "Sérieux et rigoureux", detail: "dans chaque intervention, du diagnostic à la finition" },
-    { label: "Passionné d'ultra-trail", detail: "une discipline que je retrouve dans mon exigence professionnelle" },
-  ],
+  tags: ["Entreprise familiale", "Chef de chantier puis conducteur de travaux", "Passionné d'ultra-trail"],
 };
 

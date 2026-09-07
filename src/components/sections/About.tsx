@@ -1,31 +1,25 @@
 import Image from "next/image";
-import { ShieldCheck, HardHat, Mountain, Users } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { about } from "@/lib/data/about";
 import { aboutPhoto } from "@/lib/data/photos";
 
-const icons = [Users, HardHat, ShieldCheck, Mountain];
-
 export function About() {
   return (
     <section className="py-16 sm:py-24">
       <Container className="grid items-center gap-12 lg:grid-cols-2">
-        <div className="relative">
-          <div className="absolute -right-4 -bottom-4 hidden h-full w-full rounded-3xl bg-warm/15 sm:block" aria-hidden="true" />
-          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl">
-            <Image
-              src={aboutPhoto.src}
-              alt={aboutPhoto.alt}
-              fill
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              className="object-cover"
-            />
-          </div>
+        <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl">
+          <Image
+            src={aboutPhoto.src}
+            alt={aboutPhoto.alt}
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover"
+          />
         </div>
 
         <div>
-          <SectionTitle eyebrow="À propos" title="Qui suis-je ?" />
+          <SectionTitle eyebrow="À propos" title="Une entreprise familiale, une expérience de terrain" />
           <p className="mt-6 text-lg font-medium text-neutral-700">{about.intro}</p>
           {about.paragraphs.map((paragraph, index) => (
             <p key={index} className="mt-4 text-neutral-500">
@@ -33,20 +27,9 @@ export function About() {
             </p>
           ))}
 
-          <ul className="mt-8 space-y-4">
-            {about.highlights.map((highlight, index) => {
-              const Icon = icons[index] ?? ShieldCheck;
-              return (
-                <li key={highlight.label} className="flex items-start gap-3 border-l-2 border-primary/15 pl-4">
-                  <Icon size={18} className="mt-1 shrink-0 text-primary" />
-                  <div>
-                    <p className="font-semibold text-neutral-700">{highlight.label}</p>
-                    <p className="text-sm text-neutral-500">{highlight.detail}</p>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
+          <p className="mt-8 border-t border-neutral-200 pt-6 text-sm text-neutral-500 dark:border-stone-800">
+            {about.tags.join(" · ")}
+          </p>
         </div>
       </Container>
     </section>
