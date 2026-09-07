@@ -7,7 +7,7 @@ import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { contactSchema, type ContactFormValues } from "@/lib/validation/contactSchema";
 
 const fieldClass =
-  "mt-1 w-full rounded-lg border border-neutral-200 bg-white px-3 py-2 text-sm text-neutral-700 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:border-stone-700 dark:bg-stone-900";
+  "mt-1 w-full border border-border bg-background px-3 py-2 text-sm text-neutral-700 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent";
 
 const serviceTypes = [
   "Dépannage",
@@ -136,7 +136,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-warm px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-warm-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-dark focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+        className="inline-flex cursor-pointer items-center justify-center gap-2 bg-accent px-6 py-3 text-sm tracking-wide text-on-accent uppercase transition-colors hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {isSubmitting && <Loader2 size={16} className="animate-spin" />}
         Envoyer ma demande

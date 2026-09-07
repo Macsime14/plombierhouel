@@ -1,5 +1,6 @@
 // TODO: remplacer toutes ces photos Unsplash (libres de droits, provisoires) par de vraies photos
-// des chantiers d'Antoine dès qu'il pourra les fournir.
+// des chantiers et d'Antoine dès qu'il pourra les fournir. Voir REFONTE_DESIGN.md section 20 :
+// priorité absolue aux vraies photos (Antoine, chantiers, véhicule, outils).
 function unsplash(id: string, width: number) {
   return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=80`;
 }
@@ -20,17 +21,8 @@ export const servicePhotos: Record<string, string> = {
   renovation: unsplash("photo-1629079447777-1e605162dc8d", 800),
 };
 
-export const galleryPhotos = [
-  { src: unsplash("photo-1620626011761-996317b8d101", 800), alt: "Rénovation de salle de bain" },
-  { src: unsplash("photo-1454988501794-2992f706932e", 800), alt: "Outillage de plomberie" },
-  { src: unsplash("photo-1617048530929-0edab8608369", 800), alt: "Installation de tuyauterie" },
-  { src: unsplash("photo-1668874184010-87aa286683dd", 800), alt: "Réparation de canalisation" },
-  { src: unsplash("photo-1676210133055-eab6ef033ce3", 800), alt: "Intervention de plomberie" },
-  { src: unsplash("photo-1676210134050-6f12c6898395", 800), alt: "Plombier sur un chantier" },
-];
-
-// TODO: remplacer par un vrai portrait d'Antoine dès que possible.
+// TODO: remplacer par une vraie photo d'Antoine (chantier, véhicule) dès que possible.
 export const aboutPhoto = {
-  src: unsplash("photo-1530143311094-34d807799e8f", 900),
-  alt: "Coureur d'ultra-trail en montagne",
+  src: unsplash("photo-1646227655685-a530813759b3", 900),
+  alt: "Artisan sur un chantier",
 };

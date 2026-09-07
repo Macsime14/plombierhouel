@@ -19,22 +19,26 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-neutral-100 bg-white/95 backdrop-blur dark:border-stone-800 dark:bg-stone-950/95">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur">
       <Container className="flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 font-heading font-bold text-neutral-700" onClick={() => setOpen(false)}>
+        <Link
+          href="/"
+          className="flex items-center gap-2 font-heading text-lg font-semibold text-neutral-700"
+          onClick={() => setOpen(false)}
+        >
           <Image
             src="/images/logo.png"
             alt={siteConfig.companyName}
-            width={36}
-            height={36}
-            className="h-9 w-9 dark:hidden"
+            width={32}
+            height={32}
+            className="h-8 w-8 dark:hidden"
           />
           <Image
             src="/images/logo-dark.png"
             alt={siteConfig.companyName}
-            width={36}
-            height={36}
-            className="hidden h-9 w-9 dark:block"
+            width={32}
+            height={32}
+            className="hidden h-8 w-8 dark:block"
           />
           {siteConfig.companyName}
         </Link>
@@ -44,29 +48,35 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-sm text-sm font-medium text-neutral-700 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="text-sm text-neutral-700 transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
               {link.label}
             </Link>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden items-center gap-4 md:flex">
           <ThemeToggle />
           <a
             href={siteConfig.phoneHref}
-            className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-warm px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-warm-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-dark"
+            className="flex items-center gap-2 text-sm text-neutral-700 transition-colors hover:text-accent"
           >
             <Phone size={16} />
             {siteConfig.phone}
           </a>
+          <Link
+            href="/contact"
+            className="cursor-pointer border border-current px-4 py-2 text-sm tracking-wide text-accent uppercase transition-colors hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          >
+            Devis
+          </Link>
         </div>
 
         <div className="flex items-center gap-1 md:hidden">
           <ThemeToggle />
           <button
             type="button"
-            className="inline-flex cursor-pointer items-center justify-center rounded-md p-2 text-neutral-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            className="inline-flex cursor-pointer items-center justify-center p-2 text-neutral-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             aria-label="Ouvrir le menu"
             onClick={() => setOpen((v) => !v)}
           >
@@ -76,13 +86,13 @@ export function Header() {
       </Container>
 
       {open && (
-        <div className="border-t border-neutral-100 bg-white md:hidden dark:border-stone-800 dark:bg-stone-950">
+        <div className="border-t border-border bg-background md:hidden">
           <Container className="flex flex-col gap-1 py-3">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-md px-2 py-2 text-sm font-medium text-neutral-700 transition-colors hover:bg-primary-light hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                className="px-2 py-2 text-sm text-neutral-700 transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 onClick={() => setOpen(false)}
               >
                 {link.label}
@@ -90,7 +100,7 @@ export function Header() {
             ))}
             <a
               href={siteConfig.phoneHref}
-              className="mt-2 inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-warm px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-warm-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-dark"
+              className="mt-2 flex cursor-pointer items-center justify-center gap-2 bg-accent px-4 py-3 text-sm tracking-wide text-on-accent uppercase"
             >
               <Phone size={16} />
               {siteConfig.phone}

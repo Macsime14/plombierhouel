@@ -17,7 +17,7 @@ export default function ContactPage() {
         <SectionTitle
           eyebrow="Contact"
           title="Demandez votre devis gratuit"
-          description="Renseignez le formulaire ci-dessous ou contactez-nous directement par téléphone."
+          description="Renseignez le formulaire ci-dessous ou contactez-moi directement par téléphone."
         />
 
         <div className="mt-12 grid gap-12 lg:grid-cols-5">
@@ -26,25 +26,25 @@ export default function ContactPage() {
           </div>
 
           <div className="space-y-4 lg:col-span-2">
-            <div className="rounded-2xl bg-accent p-6">
+            <div className="border border-border bg-surface p-6">
               <p className="flex items-center gap-3 text-sm text-neutral-700">
-                <Phone size={18} className="text-primary" />
-                <a href={siteConfig.phoneHref} className="hover:text-primary">
+                <Phone size={18} className="text-accent" />
+                <a href={siteConfig.phoneHref} className="hover:text-accent">
                   {siteConfig.phone}
                 </a>
               </p>
               <p className="mt-3 flex items-center gap-3 text-sm text-neutral-700">
-                <Mail size={18} className="text-primary" />
-                <a href={`mailto:${siteConfig.email}`} className="hover:text-primary">
+                <Mail size={18} className="text-accent" />
+                <a href={`mailto:${siteConfig.email}`} className="hover:text-accent">
                   {siteConfig.email}
                 </a>
               </p>
               <p className="mt-3 flex items-center gap-3 text-sm text-neutral-700">
-                <MapPin size={18} className="text-primary" />
+                <MapPin size={18} className="text-accent" />
                 {siteConfig.address}
               </p>
               <p className="mt-3 flex items-center gap-3 text-sm text-neutral-700">
-                <Clock size={18} className="text-primary" />
+                <Clock size={18} className="text-accent" />
                 {siteConfig.hours}
               </p>
             </div>

@@ -1,50 +1,57 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Design system : voir design-system/houel-plombier/MASTER.md pour la justification
+   de chaque choix (palette architecture/artisan premium, typographie editoriale). */
 :root {
-  --background: #ffffff;
-  --foreground: #292524;
-  --primary: #0f766e;
-  --primary-dark: #0b5c56;
-  --primary-light: #e6f7f5;
-  --surface-alt: #fff7ed;
-  --text-heading: #44403c;
-  --text-body: #78716c;
+  --background: #fbf9f6;
+  --surface: #f3efe8;
+  --surface-muted: #ede7dd;
+  --text: #211d18;
+  --text-muted: #6b6459;
+  --border: #e2dbcd;
+  --accent: #96601f;
+  --on-accent: #ffffff;
 }
 
 .dark {
-  --background: #0c0a09;
-  --foreground: #f5f5f4;
-  --primary: #2dd4bf;
-  --primary-dark: #5eead4;
-  --primary-light: #134e4a;
-  --surface-alt: #1c1917;
-  --text-heading: #e7e5e4;
-  --text-body: #a8a29e;
+  --background: #111111;
+  --surface: #181818;
+  --surface-muted: #202020;
+  --text: #f2f0ea;
+  --text-muted: #b8b5ae;
+  --border: #2c2c2c;
+  --accent: #d4a045;
+  --on-accent: #111111;
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-foreground: var(--text);
   --font-sans: var(--font-inter);
-  --font-heading: var(--font-jakarta);
+  --font-heading: var(--font-playfair);
 
-  /* Palette "plombier chauffagiste" - a remplacer par la charte du client si fournie.
-     Chaque token pointe vers une variable :root/.dark (voir plus haut) pour que le mode
-     sombre puisse la redefinir a l'execution, plutot qu'une valeur figee au build. */
-  --color-primary: var(--primary);
-  --color-primary-dark: var(--primary-dark);
-  --color-primary-light: var(--primary-light);
-  --color-warm: #f97316;
-  --color-warm-dark: #c2410c;
-  --color-accent: var(--surface-alt);
-  --color-neutral-700: var(--text-heading);
-  --color-neutral-500: var(--text-body);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-text-muted: var(--text-muted);
+
+  /* Alias conserves pour compatibilite avec le reste du code existant. */
+  --color-primary: var(--accent);
+  --color-primary-dark: var(--accent);
+  --color-primary-light: var(--surface-muted);
+  --color-neutral-700: var(--text);
+  --color-neutral-500: var(--text-muted);
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
+  color: var(--text);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
 }

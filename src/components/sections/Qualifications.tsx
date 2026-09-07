@@ -1,29 +1,23 @@
 import { Container } from "@/components/ui/Container";
-import { SectionTitle } from "@/components/ui/SectionTitle";
 import { qualifications } from "@/lib/data/qualifications";
 
 export function Qualifications() {
   return (
-    <section className="bg-accent py-16 sm:py-24">
-      <Container>
-        <SectionTitle
-          eyebrow="Qualifications"
-          title="Des compétences reconnues"
-          description="Des formations et habilitations qui garantissent un travail conforme et de qualité."
-          center
-        />
+    <section className="bg-surface py-16 sm:py-24">
+      <Container className="grid gap-8 lg:grid-cols-2 lg:gap-16">
+        <h2 className="font-heading text-3xl font-semibold tracking-tight text-neutral-700 sm:text-4xl">
+          {qualifications.title}
+        </h2>
 
-        <div className="mt-12 divide-y divide-primary/10 overflow-hidden rounded-2xl border border-primary/10 sm:grid sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
-          {qualifications.map((qualification) => {
-            const Icon = qualification.icon;
-            return (
-              <div key={qualification.title} className="flex flex-col items-center gap-2 p-6 text-center">
-                <Icon size={24} className="text-primary" />
-                <h3 className="font-heading text-base font-semibold text-neutral-700">{qualification.title}</h3>
-                <p className="text-sm text-neutral-500">{qualification.description}</p>
-              </div>
-            );
-          })}
+        <div>
+          <ul className="space-y-3 text-neutral-700">
+            {qualifications.items.map((item) => (
+              <li key={item} className="border-b border-border pb-3 font-medium">
+                {item}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 text-sm text-neutral-500">{qualifications.note}</p>
         </div>
       </Container>
     </section>
