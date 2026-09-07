@@ -136,7 +136,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="inline-flex items-center justify-center gap-2 rounded-full bg-warm px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-warm-dark disabled:opacity-60"
+        className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-warm px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-warm-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-dark focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {isSubmitting && <Loader2 size={16} className="animate-spin" />}
         Envoyer ma demande

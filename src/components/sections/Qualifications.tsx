@@ -13,18 +13,14 @@ export function Qualifications() {
           center
         />
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 divide-y divide-primary/10 overflow-hidden rounded-2xl border border-primary/10 sm:grid sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
           {qualifications.map((qualification) => {
             const Icon = qualification.icon;
             return (
-              <div key={qualification.title} className="rounded-2xl bg-white p-6 text-center shadow-sm dark:bg-stone-900">
-                <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-primary-light text-primary">
-                  <Icon size={22} />
-                </span>
-                <h3 className="mt-4 font-heading text-base font-semibold text-neutral-700">
-                  {qualification.title}
-                </h3>
-                <p className="mt-2 text-sm text-neutral-500">{qualification.description}</p>
+              <div key={qualification.title} className="flex flex-col items-center gap-2 p-6 text-center">
+                <Icon size={24} className="text-primary" />
+                <h3 className="font-heading text-base font-semibold text-neutral-700">{qualification.title}</h3>
+                <p className="text-sm text-neutral-500">{qualification.description}</p>
               </div>
             );
           })}

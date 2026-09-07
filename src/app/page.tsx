@@ -32,9 +32,12 @@ export default function Home() {
             <ServicesGrid limit={3} />
           </div>
           <div className="mt-8">
-            <Link href="/services" className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary-dark">
+            <Link
+              href="/services"
+              className="group inline-flex items-center gap-2 rounded-sm text-sm font-semibold text-primary transition-colors hover:text-primary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
               Voir tous les services
-              <ArrowRight size={16} />
+              <ArrowRight size={16} className="motion-safe:transition-transform motion-safe:group-hover:translate-x-1" />
             </Link>
           </div>
         </Container>

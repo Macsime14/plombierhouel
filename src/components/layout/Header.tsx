@@ -41,7 +41,11 @@ export function Header() {
 
         <nav className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="text-sm font-medium text-neutral-700 hover:text-primary">
+            <Link
+              key={link.href}
+              href={link.href}
+              className="rounded-sm text-sm font-medium text-neutral-700 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
               {link.label}
             </Link>
           ))}
@@ -51,7 +55,7 @@ export function Header() {
           <ThemeToggle />
           <a
             href={siteConfig.phoneHref}
-            className="inline-flex items-center gap-2 rounded-full bg-warm px-4 py-2 text-sm font-semibold text-white hover:bg-warm-dark"
+            className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-warm px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-warm-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-dark"
           >
             <Phone size={16} />
             {siteConfig.phone}
@@ -62,7 +66,7 @@ export function Header() {
           <ThemeToggle />
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-md p-2 text-neutral-700"
+            className="inline-flex cursor-pointer items-center justify-center rounded-md p-2 text-neutral-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             aria-label="Ouvrir le menu"
             onClick={() => setOpen((v) => !v)}
           >
@@ -78,7 +82,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-md px-2 py-2 text-sm font-medium text-neutral-700 hover:bg-primary-light hover:text-primary"
+                className="rounded-md px-2 py-2 text-sm font-medium text-neutral-700 transition-colors hover:bg-primary-light hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 onClick={() => setOpen(false)}
               >
                 {link.label}
@@ -86,7 +90,7 @@ export function Header() {
             ))}
             <a
               href={siteConfig.phoneHref}
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-warm px-4 py-2 text-sm font-semibold text-white"
+              className="mt-2 inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-warm px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-warm-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-dark"
             >
               <Phone size={16} />
               {siteConfig.phone}

@@ -32,13 +32,19 @@ export function Footer() {
         <div className="space-y-2 text-sm text-neutral-700">
           <p className="flex items-center gap-2">
             <Phone size={16} className="text-primary" />
-            <a href={siteConfig.phoneHref} className="hover:text-primary">
+            <a
+              href={siteConfig.phoneHref}
+              className="rounded-sm transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
               {siteConfig.phone}
             </a>
           </p>
           <p className="flex items-center gap-2">
             <Mail size={16} className="text-primary" />
-            <a href={`mailto:${siteConfig.email}`} className="hover:text-primary">
+            <a
+              href={`mailto:${siteConfig.email}`}
+              className="rounded-sm transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
               {siteConfig.email}
             </a>
           </p>
@@ -54,13 +60,13 @@ export function Footer() {
 
         <div className="space-y-2 text-sm">
           <p className="font-semibold text-neutral-700">Navigation</p>
-          <Link href="/services" className="block text-neutral-500 hover:text-primary">
+          <Link href="/services" className="block rounded-sm text-neutral-500 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
             Services
           </Link>
-          <Link href="/zone-intervention" className="block text-neutral-500 hover:text-primary">
+          <Link href="/zone-intervention" className="block rounded-sm text-neutral-500 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
             Zone d&apos;intervention
           </Link>
-          <Link href="/contact" className="block text-neutral-500 hover:text-primary">
+          <Link href="/contact" className="block rounded-sm text-neutral-500 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
             Contact
           </Link>
         </div>

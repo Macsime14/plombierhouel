@@ -11,14 +11,17 @@ export function About() {
   return (
     <section className="py-16 sm:py-24">
       <Container className="grid items-center gap-12 lg:grid-cols-2">
-        <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl">
-          <Image
-            src={aboutPhoto.src}
-            alt={aboutPhoto.alt}
-            fill
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            className="object-cover"
-          />
+        <div className="relative">
+          <div className="absolute -right-4 -bottom-4 hidden h-full w-full rounded-3xl bg-warm/15 sm:block" aria-hidden="true" />
+          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl">
+            <Image
+              src={aboutPhoto.src}
+              alt={aboutPhoto.alt}
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </div>
         </div>
 
         <div>
@@ -34,10 +37,8 @@ export function About() {
             {about.highlights.map((highlight, index) => {
               const Icon = icons[index] ?? ShieldCheck;
               return (
-                <li key={highlight.label} className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary-light text-primary">
-                    <Icon size={18} />
-                  </span>
+                <li key={highlight.label} className="flex items-start gap-3 border-l-2 border-primary/15 pl-4">
+                  <Icon size={18} className="mt-1 shrink-0 text-primary" />
                   <div>
                     <p className="font-semibold text-neutral-700">{highlight.label}</p>
                     <p className="text-sm text-neutral-500">{highlight.detail}</p>

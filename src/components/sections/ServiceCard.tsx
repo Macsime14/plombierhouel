@@ -7,7 +7,7 @@ export function ServiceCard({ service }: { service: Service }) {
   const photo = servicePhotos[service.slug];
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-neutral-100 bg-white shadow-sm transition-shadow hover:shadow-md dark:border-stone-800 dark:bg-stone-900">
+    <div className="overflow-hidden rounded-2xl border border-neutral-100 bg-white shadow-sm transition-all motion-safe:hover:-translate-y-1 hover:shadow-md dark:border-stone-800 dark:bg-stone-900">
       {photo && (
         <div className="relative h-40 w-full">
           <Image
@@ -17,13 +17,13 @@ export function ServiceCard({ service }: { service: Service }) {
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
             className="object-cover"
           />
-          <span className="absolute bottom-3 left-3 flex h-10 w-10 items-center justify-center rounded-xl bg-white text-primary shadow dark:bg-stone-900">
-            <Icon size={20} />
-          </span>
         </div>
       )}
       <div className="p-6">
-        <h3 className="font-heading text-lg font-semibold text-neutral-700">{service.title}</h3>
+        <div className="flex items-center gap-2">
+          <Icon size={18} className="text-primary" />
+          <h3 className="font-heading text-lg font-semibold text-neutral-700">{service.title}</h3>
+        </div>
         <p className="mt-2 text-sm text-neutral-500">{service.shortDescription}</p>
       </div>
     </div>

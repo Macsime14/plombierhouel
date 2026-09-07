@@ -13,18 +13,19 @@ export function ProcessSteps() {
           center
         />
 
-        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {process.steps.map((step, index) => {
             const Icon = step.icon;
             return (
-              <div key={step.title} className="relative rounded-2xl border border-neutral-100 bg-white p-6 shadow-sm dark:border-stone-800 dark:bg-stone-900">
-                <span className="absolute -top-3 -left-3 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-bold text-white">
-                  {index + 1}
+              <div key={step.title} className="relative border-t-2 border-primary/15 pt-8">
+                <span className="absolute -top-[2px] left-0 h-0.5 w-10 bg-warm" aria-hidden="true" />
+                <span className="font-heading text-6xl leading-none font-bold text-primary/10 select-none" aria-hidden="true">
+                  {String(index + 1).padStart(2, "0")}
                 </span>
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-light text-primary">
-                  <Icon size={22} />
-                </span>
-                <h3 className="mt-4 font-heading text-lg font-semibold text-neutral-700">{step.title}</h3>
+                <div className="mt-3 flex items-center gap-2">
+                  <Icon size={20} className="text-primary" />
+                  <h3 className="font-heading text-lg font-semibold text-neutral-700">{step.title}</h3>
+                </div>
                 <p className="mt-2 text-sm text-neutral-500">{step.description}</p>
               </div>
             );
