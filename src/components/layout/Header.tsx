@@ -85,8 +85,13 @@ export function Header() {
         </div>
       </Container>
 
-      {open && (
-        <div className="border-t border-border bg-background md:hidden">
+      <div
+        aria-hidden={!open}
+        className={`grid overflow-hidden bg-background transition-[grid-template-rows] duration-300 ease-out md:hidden ${
+          open ? "grid-rows-[1fr] border-t border-border" : "grid-rows-[0fr]"
+        }`}
+      >
+        <div className="overflow-hidden">
           <Container className="flex flex-col gap-1 py-3">
             {navLinks.map((link) => (
               <Link
@@ -107,7 +112,7 @@ export function Header() {
             </a>
           </Container>
         </div>
-      )}
+      </div>
     </header>
   );
 }
