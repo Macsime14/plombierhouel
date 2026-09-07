@@ -17,7 +17,7 @@ export const realisations = [
     type: "Chauffage",
     location: "Secteur de Noyers-Bocage",
     description: "Exemple d'installation et de mise aux normes d'un réseau de chauffage.",
-    photo: unsplash("photo-1517581177682-a085bb7ffb15", 1000),
+    photo: unsplash("photo-1669725341213-7379ff6c90d5", 1000),
   },
   {
     type: "Dépannage",
