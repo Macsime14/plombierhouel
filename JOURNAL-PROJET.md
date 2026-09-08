@@ -149,7 +149,15 @@ Décision de construire un back-end : gestion des demandes, devis, planning et f
 - **Envoi par email** (Resend) avec le PDF en pièce jointe — nécessite un `RESEND_API_KEY` valide (non configuré en dev).
 - **Page publique** `/devis/[token]` : le client consulte, télécharge le PDF, accepte (nom + horodatage + IP enregistrés) ou refuse.
 
-**Reste pour la mise en production du back-end :** coordonnées légales complètes d'Antoine (SIRET, assurance décennale, IBAN), régime de TVA confirmé, clé Resend + domaine vérifié, domaine + comptes Vercel/Supabase. Phase 2 (planning) à venir.
+### Phase 2 réalisée (planning)
+
+- **Gestion des horaires** (`src/lib/domain/dates.ts`) : conversions entre l'heure « murale » de Paris (saisie/affichage) et l'instant UTC stocké en base, avec prise en compte du passage heure d'été / heure d'hiver. Tests inclus.
+- **Interventions** : CRUD, statuts (planifiée / en cours / terminée / annulée), lien optionnel vers un client et un devis.
+- **Vue planning** `/admin/planning` : semaine à 7 colonnes, navigation semaine précédente/suivante, jour courant mis en avant.
+- **Export `.ics`** (`src/lib/ics.ts`) : téléchargement par intervention (« Ajouter à mon agenda ») et par semaine, pour récupérer les RDV sur le téléphone. Pas de synchronisation bidirectionnelle (choix validé).
+- Bouton « Planifier une intervention » depuis un devis ; tableau de bord enrichi.
+
+**Reste pour la mise en production du back-end :** coordonnées légales complètes d'Antoine (SIRET, assurance décennale, IBAN), régime de TVA confirmé, clé Resend + domaine vérifié, domaine + comptes Vercel/Supabase. **Phase 3 (facturation) à venir.**
 
 ---
 
