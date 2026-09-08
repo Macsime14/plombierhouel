@@ -1,0 +1,26 @@
+# Postgres de développement pour le back-end.
+# Usage : docker compose up -d   (démarrer)  /  docker compose down   (arrêter)
+# Les données persistent dans le volume nommé houel_pgdata même après un down.
+# Pour repartir de zéro : docker compose down -v
+
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: houel_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: houel
+      POSTGRES_PASSWORD: houel_dev_pwd
+      POSTGRES_DB: houel_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - houel_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U houel -d houel_dev"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  houel_pgdata:
