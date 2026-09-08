@@ -157,7 +157,18 @@ Décision de construire un back-end : gestion des demandes, devis, planning et f
 - **Export `.ics`** (`src/lib/ics.ts`) : téléchargement par intervention (« Ajouter à mon agenda ») et par semaine, pour récupérer les RDV sur le téléphone. Pas de synchronisation bidirectionnelle (choix validé).
 - Bouton « Planifier une intervention » depuis un devis ; tableau de bord enrichi.
 
-**Reste pour la mise en production du back-end :** coordonnées légales complètes d'Antoine (SIRET, assurance décennale, IBAN), régime de TVA confirmé, clé Resend + domaine vérifié, domaine + comptes Vercel/Supabase. **Phase 3 (facturation) à venir.**
+### Phase 3 réalisée (facturation)
+
+- **Journal d'inaltérabilité** (`src/lib/domain/journal.ts`) : chaque événement d'une facture (émission, paiement, avoir) est enregistré dans une entrée chaînée par hash SHA-256 ; toute modification a posteriori casse la chaîne et devient détectable. Sérialisation JSON stable (PostgreSQL réordonne les clés d'une colonne `jsonb`). Tests inclus.
+- **Numérotation stricte** : le numéro de facture (`F-2026-001`) est réservé **au moment de l'émission**, dans la même transaction, pour garantir une séquence continue sans rupture.
+- **Cycle facture** : brouillon éditable (éditeur de lignes partagé avec les devis) → création possible depuis un devis accepté → **émission** (fige les lignes et toutes les mentions légales, rend la facture immuable) → paiements (statut recalculé : payée partiellement / payée) → avoirs (`AV-2026-001`, annulation totale ou partielle).
+- **PDF de facture** avec mentions figées : pénalités de retard, indemnité 40 €, IBAN, assurance décennale, régime de TVA (293 B ou détail par taux).
+- **Export comptable CSV** de toutes les factures émises.
+- Tableau de bord : compteur de factures impayées.
+
+**Point Factur-X :** les factures contiennent toutes les données structurées nécessaires, mais l'emballage au format Factur-X (PDF/A-3 avec XML CII embarqué) et l'envoi via une Plateforme de Dématérialisation Partenaire restent à faire pour la réforme B2B — sans impact sur le B2C.
+
+**Reste pour la mise en production du back-end :** coordonnées légales complètes d'Antoine (SIRET, assurance décennale, IBAN), régime de TVA confirmé et **modèle de facture validé par son comptable**, clé Resend + domaine vérifié, domaine + comptes Vercel/Supabase.
 
 ---
 
