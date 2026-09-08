@@ -26,6 +26,12 @@ export async function optionsPrestations() {
     .orderBy(asc(prestations.libelle));
 }
 
+export async function chargerDevisParToken(token: string) {
+  const [d] = await db.select().from(devis).where(eq(devis.tokenPublic, token)).limit(1);
+  if (!d) return null;
+  return chargerDevis(d.id);
+}
+
 export async function chargerDevis(id: string) {
   const [d] = await db.select().from(devis).where(eq(devis.id, id)).limit(1);
   if (!d) return null;
