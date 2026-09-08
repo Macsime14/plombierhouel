@@ -13,7 +13,7 @@ export default function ServicesPage() {
   return (
     <section className="py-16 sm:py-24">
       <Container>
-        <SectionTitle eyebrow="Mes services" title="Ce que je fais" />
+        <SectionTitle title="Ce que je fais" />
         <div className="mt-10">
           <ServicesList />
         </div>

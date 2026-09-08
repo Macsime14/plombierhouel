@@ -19,15 +19,15 @@ export function About() {
         </div>
 
         <div>
-          <SectionTitle eyebrow="L'entreprise" title="Une entreprise de terrain" />
-          <p className="mt-6 text-lg font-medium text-neutral-700">{about.intro}</p>
+          <SectionTitle title="Une entreprise de terrain" />
+          <p className="mt-6 text-lg font-medium text-text">{about.intro}</p>
           {about.paragraphs.map((paragraph, index) => (
-            <p key={index} className="mt-4 text-neutral-500">
+            <p key={index} className="mt-4 text-text-muted">
               {paragraph}
             </p>
           ))}
 
-          <p className="mt-8 border-t border-border pt-6 text-sm text-neutral-500">{about.tags.join(" · ")}</p>
+          <p className="mt-8 border-t border-border pt-6 text-sm text-text-muted">{about.tags.join(" · ")}</p>
         </div>
       </Container>
     </section>

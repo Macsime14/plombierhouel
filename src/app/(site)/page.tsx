@@ -32,7 +32,7 @@ export default function Home() {
       <Reveal>
         <section className="py-16 sm:py-24">
           <Container>
-            <SectionTitle eyebrow="Mes services" title="Ce que je fais" />
+            <SectionTitle title="Ce que je fais" />
             <div className="mt-10">
               <ServicesList limit={4} />
             </div>
@@ -55,7 +55,7 @@ export default function Home() {
       <Reveal>
         <section className="bg-surface py-16 sm:py-24">
           <Container>
-            <SectionTitle eyebrow="Réalisations" title="Sur le terrain" />
+            <SectionTitle title="Sur le terrain" />
             <div className="mt-12">
               <Realisations />
             </div>
@@ -78,7 +78,7 @@ export default function Home() {
       <Reveal>
         <section className="py-16 sm:py-24">
           <Container>
-            <SectionTitle eyebrow="Zone d'intervention" title={`Nous intervenons à ${siteConfig.areaDescription}`} />
+            <SectionTitle title={`Nous intervenons à ${siteConfig.areaDescription}`} />
             <div className="mt-8">
               <InterventionZone />
             </div>
@@ -89,10 +89,10 @@ export default function Home() {
       <Reveal>
         <section className="border-t border-border py-16 sm:py-24">
           <Container className="text-center">
-            <h2 className="font-heading text-3xl font-semibold text-neutral-700 sm:text-4xl">
+            <h2 className="font-heading text-3xl font-semibold text-text sm:text-4xl">
               Vous avez un projet ? Parlons-en.
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-neutral-500">
+            <p className="mx-auto mt-4 max-w-xl text-text-muted">
               Expliquez-moi votre besoin, je vous réponds rapidement.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">

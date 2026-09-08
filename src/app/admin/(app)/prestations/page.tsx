@@ -13,7 +13,7 @@ export default async function PrestationsPage() {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <h1 className="font-[family-name:var(--font-playfair)] text-2xl font-semibold">
+        <h1 className="font-heading text-2xl font-semibold">
           Catalogue de prestations
         </h1>
         <Link

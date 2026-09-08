@@ -24,12 +24,12 @@ export function Footer() {
               height={28}
               className="hidden h-7 w-7 dark:block"
             />
-            <p className="font-heading text-lg font-semibold text-neutral-700">{siteConfig.companyName}</p>
+            <p className="font-heading text-lg font-semibold text-text">{siteConfig.companyName}</p>
           </div>
-          <p className="mt-2 text-sm text-neutral-500">{siteConfig.tagline}</p>
+          <p className="mt-2 text-sm text-text-muted">{siteConfig.tagline}</p>
         </div>
 
-        <div className="space-y-2 text-sm text-neutral-700">
+        <div className="space-y-2 text-sm text-text">
           <p className="flex items-center gap-2">
             <Phone size={16} className="text-accent" />
             <a
@@ -59,29 +59,29 @@ export function Footer() {
         </div>
 
         <div className="space-y-2 text-sm">
-          <p className="font-medium text-neutral-700">Navigation</p>
+          <p className="font-medium text-text">Navigation</p>
           <Link
             href="/services"
-            className="block text-neutral-500 transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            className="block text-text-muted transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           >
             Services
           </Link>
           <Link
             href="/zone-intervention"
-            className="block text-neutral-500 transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            className="block text-text-muted transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           >
             Zone d&apos;intervention
           </Link>
           <Link
             href="/contact"
-            className="block text-neutral-500 transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            className="block text-text-muted transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           >
             Contact
           </Link>
         </div>
 
-        <div className="space-y-2 text-sm text-neutral-500">
-          <p className="font-medium text-neutral-700">Informations légales</p>
+        <div className="space-y-2 text-sm text-text-muted">
+          <p className="font-medium text-text">Informations légales</p>
           <p>SIRET : {siteConfig.siret}</p>
           <p>{siteConfig.address}</p>
         </div>
@@ -89,7 +89,7 @@ export function Footer() {
 
       <div className="border-t border-border py-4">
         <Container>
-          <p className="text-center text-xs text-neutral-500">
+          <p className="text-center text-xs text-text-muted">
             © {new Date().getFullYear()} {siteConfig.companyName}. Tous droits réservés.
           </p>
         </Container>

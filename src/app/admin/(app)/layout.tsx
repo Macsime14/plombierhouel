@@ -16,7 +16,7 @@ export default async function AdminLayout({ children }: LayoutProps<"/admin">) {
       <div className="mx-auto flex min-h-full max-w-6xl flex-col md:flex-row">
         <aside className="border-b border-border bg-surface p-4 md:w-56 md:border-r md:border-b-0">
           <div className="mb-6 px-2">
-            <p className="font-[family-name:var(--font-playfair)] text-lg font-semibold">
+            <p className="font-heading text-lg font-semibold">
               Houel Plombier
             </p>
             <p className="text-xs text-text-muted">Administration</p>

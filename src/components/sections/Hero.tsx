@@ -11,10 +11,10 @@ export function Hero() {
         <p className="text-sm tracking-wide text-accent uppercase">
           Plomberie &amp; chauffage — {siteConfig.areaDescription}
         </p>
-        <h1 className="mt-5 font-heading text-4xl leading-[1.1] font-semibold tracking-tight text-neutral-700 sm:text-5xl">
+        <h1 className="mt-5 font-heading text-4xl leading-[1.1] font-semibold tracking-tight text-text sm:text-5xl">
           Un travail propre, des conseils clairs, un chantier bien mené.
         </h1>
-        <p className="mt-6 max-w-md text-lg text-neutral-500">
+        <p className="mt-6 max-w-md text-lg text-text-muted">
           J&apos;interviens pour vos besoins en plomberie et en chauffage, avec la même exigence à chaque étape.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">

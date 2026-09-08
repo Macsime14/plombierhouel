@@ -8,7 +8,7 @@ export default async function ParametresPage() {
 
   return (
     <div className="max-w-3xl">
-      <h1 className="font-[family-name:var(--font-playfair)] text-2xl font-semibold">
+      <h1 className="font-heading text-2xl font-semibold">
         Paramètres de l’entreprise
       </h1>
       <p className="mt-1 mb-6 text-sm text-text-muted">

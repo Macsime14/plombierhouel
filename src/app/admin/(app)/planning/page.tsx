@@ -52,7 +52,7 @@ export default async function PlanningPage({ searchParams }: PageProps<"/admin/p
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="font-[family-name:var(--font-playfair)] text-2xl font-semibold">Planning</h1>
+        <h1 className="font-heading text-2xl font-semibold">Planning</h1>
         <div className="flex items-center gap-2">
           <a
             href={`/admin/planning/ics?semaine=${lundi}`}

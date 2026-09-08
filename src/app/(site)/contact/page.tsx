@@ -15,7 +15,6 @@ export default function ContactPage() {
     <section className="py-16 sm:py-24">
       <Container>
         <SectionTitle
-          eyebrow="Contact"
           title="Demandez votre devis gratuit"
           description="Renseignez le formulaire ci-dessous ou contactez-moi directement par téléphone."
         />
@@ -27,23 +26,23 @@ export default function ContactPage() {
 
           <div className="space-y-4 lg:col-span-2">
             <div className="border border-border bg-surface p-6">
-              <p className="flex items-center gap-3 text-sm text-neutral-700">
+              <p className="flex items-center gap-3 text-sm text-text">
                 <Phone size={18} className="text-accent" />
                 <a href={siteConfig.phoneHref} className="hover:text-accent">
                   {siteConfig.phone}
                 </a>
               </p>
-              <p className="mt-3 flex items-center gap-3 text-sm text-neutral-700">
+              <p className="mt-3 flex items-center gap-3 text-sm text-text">
                 <Mail size={18} className="text-accent" />
                 <a href={`mailto:${siteConfig.email}`} className="hover:text-accent">
                   {siteConfig.email}
                 </a>
               </p>
-              <p className="mt-3 flex items-center gap-3 text-sm text-neutral-700">
+              <p className="mt-3 flex items-center gap-3 text-sm text-text">
                 <MapPin size={18} className="text-accent" />
                 {siteConfig.address}
               </p>
-              <p className="mt-3 flex items-center gap-3 text-sm text-neutral-700">
+              <p className="mt-3 flex items-center gap-3 text-sm text-text">
                 <Clock size={18} className="text-accent" />
                 {siteConfig.hours}
               </p>

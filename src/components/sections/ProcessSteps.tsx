@@ -5,7 +5,7 @@ export function ProcessSteps() {
   return (
     <section className="bg-surface py-16 sm:py-24">
       <Container>
-        <h2 className="font-heading text-3xl font-semibold tracking-tight text-neutral-700 sm:text-4xl">
+        <h2 className="font-heading text-3xl font-semibold tracking-tight text-text sm:text-4xl">
           {process.title}
         </h2>
 
@@ -13,8 +13,8 @@ export function ProcessSteps() {
           {process.steps.map((step, index) => (
             <div key={step.title}>
               <span className="font-heading text-sm text-accent">{String(index + 1).padStart(2, "0")}</span>
-              <p className="mt-1 font-heading text-lg font-semibold text-neutral-700">{step.title}</p>
-              <p className="mt-1 text-neutral-500">{step.description}</p>
+              <p className="mt-1 font-heading text-lg font-semibold text-text">{step.title}</p>
+              <p className="mt-1 text-text-muted">{step.description}</p>
             </div>
           ))}
         </div>

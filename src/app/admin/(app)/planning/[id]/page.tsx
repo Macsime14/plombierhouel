@@ -23,7 +23,7 @@ export default async function InterventionPage({ params }: PageProps<"/admin/pla
       </Link>
 
       <div className="mt-2 mb-6 flex flex-wrap items-center justify-between gap-3">
-        <h1 className="font-[family-name:var(--font-playfair)] text-2xl font-semibold">
+        <h1 className="font-heading text-2xl font-semibold">
           {data.intervention.titre}
         </h1>
         <a

@@ -7,7 +7,7 @@ import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { contactSchema, type ContactFormValues } from "@/lib/validation/contactSchema";
 
 const fieldClass =
-  "mt-1 w-full border border-border bg-background px-3 py-2 text-sm text-neutral-700 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent";
+  "mt-1 w-full border border-border bg-background px-3 py-2 text-sm text-text focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent";
 
 const serviceTypes = [
   "Dépannage",
@@ -64,7 +64,7 @@ export function ContactForm() {
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-neutral-700">
+          <label htmlFor="name" className="block text-sm font-medium text-text">
             Nom
           </label>
           <input
@@ -77,7 +77,7 @@ export function ContactForm() {
         </div>
 
         <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-neutral-700">
+          <label htmlFor="phone" className="block text-sm font-medium text-text">
             Téléphone
           </label>
           <input
@@ -91,7 +91,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-neutral-700">
+        <label htmlFor="email" className="block text-sm font-medium text-text">
           Email
         </label>
         <input
@@ -104,7 +104,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="serviceType" className="block text-sm font-medium text-neutral-700">
+        <label htmlFor="serviceType" className="block text-sm font-medium text-text">
           Type de besoin
         </label>
         <select
@@ -121,7 +121,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-neutral-700">
+        <label htmlFor="message" className="block text-sm font-medium text-text">
           Message
         </label>
         <textarea

@@ -23,10 +23,9 @@ export function Realisations() {
                 />
               </div>
               <div className={imageFirst ? "lg:order-2" : "lg:order-1"}>
-                <span className="font-heading text-sm text-accent">{String(index + 1).padStart(2, "0")}</span>
-                <h3 className="mt-1 font-heading text-2xl font-semibold text-neutral-700">{item.type}</h3>
-                <p className="mt-1 text-sm text-neutral-500">{item.location}</p>
-                <p className="mt-4 max-w-md text-neutral-500">{item.description}</p>
+                <h3 className="mt-1 font-heading text-2xl font-semibold text-text">{item.type}</h3>
+                <p className="mt-1 text-sm text-text-muted">{item.location}</p>
+                <p className="mt-4 max-w-md text-text-muted">{item.description}</p>
               </div>
             </div>
           </Reveal>

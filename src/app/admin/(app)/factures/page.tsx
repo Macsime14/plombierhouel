@@ -18,7 +18,7 @@ export default async function FacturesPage() {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <h1 className="font-[family-name:var(--font-playfair)] text-2xl font-semibold">Factures</h1>
+        <h1 className="font-heading text-2xl font-semibold">Factures</h1>
         <div className="flex gap-2">
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- route de téléchargement, pas une page */}
           <a

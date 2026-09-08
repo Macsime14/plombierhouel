@@ -53,7 +53,7 @@ export default async function DevisDetailPage({ params }: PageProps<"/admin/devi
       </Link>
 
       <div className="mt-2 flex flex-wrap items-center justify-between gap-3">
-        <h1 className="font-[family-name:var(--font-playfair)] text-2xl font-semibold">
+        <h1 className="font-heading text-2xl font-semibold">
           {d.numero}
         </h1>
         <span

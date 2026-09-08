@@ -17,7 +17,7 @@ export default async function NouvelleInterventionPage({
       <Link href="/admin/planning" className="text-sm text-text-muted hover:underline">
         ← Planning
       </Link>
-      <h1 className="mt-2 mb-6 font-[family-name:var(--font-playfair)] text-2xl font-semibold">
+      <h1 className="mt-2 mb-6 font-heading text-2xl font-semibold">
         Nouvelle intervention
       </h1>
       <InterventionForm

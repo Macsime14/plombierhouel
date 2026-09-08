@@ -22,7 +22,7 @@ export default async function ClientPage({ params }: PageProps<"/admin/clients/[
       <Link href="/admin/clients" className="text-sm text-text-muted hover:underline">
         ← Clients
       </Link>
-      <h1 className="mt-2 mb-6 font-[family-name:var(--font-playfair)] text-2xl font-semibold">
+      <h1 className="mt-2 mb-6 font-heading text-2xl font-semibold">
         {client.nom}
       </h1>
 

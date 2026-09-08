@@ -17,16 +17,14 @@
   --accent-hover: #333f4a;
   --on-accent: #ffffff;
 
-  /* Laiton — accent chaud, réservé aux montants clés, filets, marqueurs d'urgence */
-  --accent-warm: #a8842c;
+  /* Laiton — accent chaud : bouton primaire, montants clés, filets, marqueurs d'urgence.
+     Assombri par rapport au laiton pur (#a8842c) pour tenir le contraste AA sur blanc. */
+  --accent-warm: #8a6a1c;
+  --accent-warm-hover: #755916;
+  --on-accent-warm: #ffffff;
 
   --success: #40745a;
   --danger: #a83a2e;
-
-  /* Alias transitoires — supprimés à l'étape « primitives » quand les composants
-     passeront aux tokens sémantiques directement. */
-  --font-inter: var(--font-body);
-  --font-playfair: var(--font-display);
 }
 
 .dark {
@@ -42,6 +40,8 @@
   --on-accent: #14181c;
 
   --accent-warm: #c6a653;
+  --accent-warm-hover: #d3b76a;
+  --on-accent-warm: #14181c;
 
   --success: #6fae86;
   --danger: #d98878;
@@ -60,16 +60,11 @@
   --color-accent-hover: var(--accent-hover);
   --color-on-accent: var(--on-accent);
   --color-accent-warm: var(--accent-warm);
+  --color-accent-warm-hover: var(--accent-warm-hover);
+  --color-on-accent-warm: var(--on-accent-warm);
   --color-text-muted: var(--text-muted);
   --color-success: var(--success);
   --color-danger: var(--danger);
-
-  /* Alias transitoires pour le code existant (à retirer à l'étape primitives). */
-  --color-primary: var(--accent);
-  --color-primary-dark: var(--accent-hover);
-  --color-primary-light: var(--surface-muted);
-  --color-neutral-700: var(--text);
-  --color-neutral-500: var(--text-muted);
 }
 
 body {

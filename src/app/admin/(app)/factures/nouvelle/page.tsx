@@ -22,7 +22,7 @@ export default async function NouvelleFacturePage({
       <Link href="/admin/factures" className="text-sm text-text-muted hover:underline">
         ← Factures
       </Link>
-      <h1 className="mt-2 mb-2 font-[family-name:var(--font-playfair)] text-2xl font-semibold">
+      <h1 className="mt-2 mb-2 font-heading text-2xl font-semibold">
         Nouvelle facture
       </h1>
       <p className="mb-6 text-sm text-text-muted">

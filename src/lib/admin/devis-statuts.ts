@@ -12,7 +12,7 @@ export const DEVIS_STATUT_LABELS: Record<DevisStatut, string> = {
 };
 
 export const DEVIS_STATUT_COULEURS: Record<DevisStatut, string> = {
-  brouillon: "bg-neutral-200 text-neutral-700",
+  brouillon: "bg-surface-muted text-text",
   envoye: "bg-blue-100 text-blue-800",
   vu: "bg-violet-100 text-violet-800",
   accepte: "bg-green-100 text-green-800",

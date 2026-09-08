@@ -26,7 +26,7 @@ export default async function PrestationPage({ params }: PageProps<"/admin/prest
       <Link href="/admin/prestations" className="text-sm text-text-muted hover:underline">
         ← Catalogue
       </Link>
-      <h1 className="mt-2 mb-6 font-[family-name:var(--font-playfair)] text-2xl font-semibold">
+      <h1 className="mt-2 mb-6 font-heading text-2xl font-semibold">
         {prestation.libelle}
       </h1>
 

@@ -23,7 +23,7 @@ export function Header() {
       <Container className="flex h-16 items-center justify-between">
         <Link
           href="/"
-          className="flex items-center gap-2 font-heading text-lg font-semibold text-neutral-700"
+          className="flex items-center gap-2 font-heading text-lg font-semibold text-text"
           onClick={() => setOpen(false)}
         >
           <Image
@@ -48,7 +48,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm text-neutral-700 transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              className="text-sm text-text transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
               {link.label}
             </Link>
@@ -59,7 +59,7 @@ export function Header() {
           <ThemeToggle />
           <a
             href={siteConfig.phoneHref}
-            className="flex items-center gap-2 text-sm text-neutral-700 transition-colors hover:text-accent"
+            className="flex items-center gap-2 text-sm text-text transition-colors hover:text-accent"
           >
             <Phone size={16} />
             {siteConfig.phone}
@@ -76,7 +76,7 @@ export function Header() {
           <ThemeToggle />
           <button
             type="button"
-            className="inline-flex cursor-pointer items-center justify-center p-2 text-neutral-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            className="inline-flex cursor-pointer items-center justify-center p-2 text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             aria-label="Ouvrir le menu"
             onClick={() => setOpen((v) => !v)}
           >
@@ -97,7 +97,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-2 py-2 text-sm text-neutral-700 transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                className="px-2 py-2 text-sm text-text transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 onClick={() => setOpen(false)}
               >
                 {link.label}

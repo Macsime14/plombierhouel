@@ -17,7 +17,7 @@ export const FACTURE_STATUT_LABELS: Record<FactureStatut, string> = {
 };
 
 export const FACTURE_STATUT_COULEURS: Record<FactureStatut, string> = {
-  brouillon: "bg-neutral-200 text-neutral-700",
+  brouillon: "bg-surface-muted text-text",
   emise: "bg-blue-100 text-blue-800",
   payee_partiel: "bg-amber-100 text-amber-800",
   payee: "bg-green-100 text-green-800",

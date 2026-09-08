@@ -71,7 +71,7 @@ export default async function FacturePage({ params }: PageProps<"/admin/factures
       </Link>
 
       <div className="mt-2 flex flex-wrap items-center justify-between gap-3">
-        <h1 className="font-[family-name:var(--font-playfair)] text-2xl font-semibold">
+        <h1 className="font-heading text-2xl font-semibold">
           {f.numero ?? "Brouillon"}
         </h1>
         <span

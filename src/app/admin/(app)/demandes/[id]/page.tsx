@@ -30,7 +30,7 @@ export default async function DemandePage({ params }: PageProps<"/admin/demandes
       <Link href="/admin/demandes" className="text-sm text-text-muted hover:underline">
         ← Demandes
       </Link>
-      <h1 className="mt-2 font-[family-name:var(--font-playfair)] text-2xl font-semibold">
+      <h1 className="mt-2 font-heading text-2xl font-semibold">
         {demande.nom}
       </h1>
       <p className="mt-1 text-sm text-text-muted">Reçue le {dateFmt.format(demande.creeLe)}</p>

@@ -31,7 +31,7 @@ export default async function DevisPage() {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <h1 className="font-[family-name:var(--font-playfair)] text-2xl font-semibold">Devis</h1>
+        <h1 className="font-heading text-2xl font-semibold">Devis</h1>
         <Link
           href="/admin/devis/nouveau"
           className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-on-accent hover:opacity-90"

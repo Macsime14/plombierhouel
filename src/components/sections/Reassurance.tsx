@@ -10,8 +10,8 @@ export function Reassurance() {
           {reassurance.map((item, index) => (
             <Reveal key={item.label} delay={index * 90} className="sm:border-l sm:border-border sm:first:border-l-0">
               <div className="text-center">
-                <dt className="font-heading text-xl font-semibold text-neutral-700 sm:text-2xl">{item.value}</dt>
-                <dd className="mt-1 text-sm text-neutral-500">{item.label}</dd>
+                <dt className="font-heading text-xl font-semibold text-text sm:text-2xl">{item.value}</dt>
+                <dd className="mt-1 text-sm text-text-muted">{item.label}</dd>
               </div>
             </Reveal>
           ))}

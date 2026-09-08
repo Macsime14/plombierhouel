@@ -14,7 +14,6 @@ export default function ZoneInterventionPage() {
     <section className="py-16 sm:py-24">
       <Container>
         <SectionTitle
-          eyebrow="Zone d'intervention"
           title={`Nous intervenons à ${siteConfig.areaDescription}`}
           description="Vous ne trouvez pas votre ville dans la liste ? Contactez-nous, nous pouvons peut-être tout de même intervenir."
         />

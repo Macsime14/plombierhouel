@@ -9,7 +9,7 @@ export default function NouveauClientPage() {
       <Link href="/admin/clients" className="text-sm text-text-muted hover:underline">
         ← Clients
       </Link>
-      <h1 className="mt-2 mb-6 font-[family-name:var(--font-playfair)] text-2xl font-semibold">
+      <h1 className="mt-2 mb-6 font-heading text-2xl font-semibold">
         Nouveau client
       </h1>
       <ClientForm />

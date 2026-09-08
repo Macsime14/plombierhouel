@@ -21,5 +21,5 @@ export const DEMANDE_STATUT_COULEURS: Record<DemandeStatut, string> = {
   a_rappeler: "bg-amber-100 text-amber-800",
   devis_envoye: "bg-violet-100 text-violet-800",
   gagne: "bg-green-100 text-green-800",
-  perdu: "bg-neutral-200 text-neutral-700",
+  perdu: "bg-surface-muted text-text",
 };

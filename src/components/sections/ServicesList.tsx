@@ -16,9 +16,8 @@ export function ServicesList({ limit }: { limit?: number }) {
           <Reveal key={service.slug} delay={(index % 4) * 80}>
             <div className="grid gap-8 py-10 lg:grid-cols-2 lg:items-center">
               <div className={imageFirst ? "lg:order-2" : "lg:order-1"}>
-                <span className="font-heading text-sm text-accent">{String(index + 1).padStart(2, "0")}</span>
-                <h3 className="mt-1 font-heading text-2xl font-semibold text-neutral-700">{service.title}</h3>
-                <p className="mt-2 max-w-sm text-neutral-500">{service.description}</p>
+                <h3 className="mt-1 font-heading text-2xl font-semibold text-text">{service.title}</h3>
+                <p className="mt-2 max-w-sm text-text-muted">{service.description}</p>
               </div>
 
               {photo && (

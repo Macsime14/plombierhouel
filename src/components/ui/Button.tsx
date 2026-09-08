@@ -10,11 +10,11 @@ type ButtonProps = {
 
 export function Button({ href, children, variant = "primary", className = "" }: ButtonProps) {
   const base =
-    "inline-flex cursor-pointer items-center justify-center gap-2 px-6 py-3 text-sm font-medium tracking-wide uppercase transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
+    "inline-flex cursor-pointer items-center justify-center gap-2 rounded-sm px-5 py-2.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background";
   const styles =
     variant === "primary"
-      ? "bg-accent text-on-accent hover:opacity-90"
-      : "border border-current text-accent hover:bg-surface";
+      ? "bg-accent-warm text-on-accent-warm hover:bg-accent-warm-hover"
+      : "border border-border text-text hover:border-accent hover:bg-surface";
 
   const isExternal = href.startsWith("http") || href.startsWith("tel:") || href.startsWith("mailto:");
 

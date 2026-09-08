@@ -19,7 +19,7 @@ export default async function DemandesPage() {
 
   return (
     <div>
-      <h1 className="font-[family-name:var(--font-playfair)] text-2xl font-semibold">Demandes</h1>
+      <h1 className="font-heading text-2xl font-semibold">Demandes</h1>
       <p className="mt-1 mb-6 text-sm text-text-muted">
         Demandes reçues via le formulaire de contact du site.
       </p>

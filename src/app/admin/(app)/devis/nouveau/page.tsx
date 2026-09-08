@@ -24,7 +24,7 @@ export default async function NouveauDevisPage({
       <Link href="/admin/devis" className="text-sm text-text-muted hover:underline">
         ← Devis
       </Link>
-      <h1 className="mt-2 mb-6 font-[family-name:var(--font-playfair)] text-2xl font-semibold">
+      <h1 className="mt-2 mb-6 font-heading text-2xl font-semibold">
         Nouveau devis
       </h1>
 
