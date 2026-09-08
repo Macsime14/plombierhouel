@@ -13,6 +13,7 @@ import {
 import { formaterEuros } from "@/lib/domain/montants";
 import { DevisEditor, type LigneInitiale } from "../DevisEditor";
 import { StatutDevisSelect } from "../StatutDevisSelect";
+import { DevisActions } from "./DevisActions";
 
 export const metadata = { title: "Devis" };
 
@@ -109,6 +110,8 @@ export default async function DevisDetailPage({ params }: PageProps<"/admin/devi
         </div>
 
         <aside className="flex flex-col gap-4 text-sm">
+          <DevisActions id={d.id} clientEmail={client?.email ?? null} />
+
           <div>
             <p className="mb-1 font-medium">Statut</p>
             <StatutDevisSelect id={d.id} statut={d.statut} />

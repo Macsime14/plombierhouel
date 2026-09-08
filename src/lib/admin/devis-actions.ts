@@ -13,6 +13,9 @@ import { devis, devisLignes } from "@/lib/db/schema";
 import { getParametres } from "@/lib/domain/parametres";
 import { reserverNumero } from "@/lib/domain/numerotation";
 import { saisieVersCents } from "@/lib/domain/montants";
+import { chargerDevis } from "@/lib/admin/devis-data";
+import { genererDevisPdf } from "@/lib/pdf/devis";
+import { envoyerDevisParEmail } from "@/lib/email/sendDevis";
 import {
   calculerTotaux,
   totalHtLigneCents,
@@ -211,6 +214,60 @@ export async function changerStatutDevis(formData: FormData): Promise<void> {
   await db.update(devis).set(patch).where(eq(devis.id, id.data));
   revalidatePath("/admin/devis");
   revalidatePath(`/admin/devis/${id.data}`);
+}
+
+export type EnvoiState = { ok?: boolean; error?: string } | undefined;
+
+export async function envoyerDevis(_state: EnvoiState, formData: FormData): Promise<EnvoiState> {
+  await verifierSession();
+
+  const id = z.string().uuid().safeParse(formData.get("id"));
+  if (!id.success) return { error: "Devis introuvable." };
+
+  const data = await chargerDevis(id.data);
+  if (!data) return { error: "Devis introuvable." };
+  if (!data.client?.email) {
+    return { error: "Ce client n'a pas d'adresse email. Complétez sa fiche d'abord." };
+  }
+
+  const params = await getParametres();
+
+  let pdf;
+  try {
+    pdf = await genererDevisPdf(id.data);
+  } catch (error) {
+    console.error("Erreur génération PDF devis:", error);
+    return { error: "Impossible de générer le PDF du devis." };
+  }
+  if (!pdf) return { error: "Devis introuvable." };
+
+  const base = process.env.APP_URL ?? "http://localhost:3000";
+
+  try {
+    await envoyerDevisParEmail({
+      destinataire: data.client.email,
+      entrepriseNom: params.raisonSociale ?? "Houel Plombier",
+      numero: data.devis.numero,
+      lienPublic: `${base}/devis/${data.devis.tokenPublic}`,
+      pdf: pdf.buffer,
+    });
+  } catch (error) {
+    console.error("Erreur envoi email devis:", error);
+    return { error: "L'email n'a pas pu être envoyé. Vérifiez la configuration Resend." };
+  }
+
+  await db
+    .update(devis)
+    .set({
+      statut: data.devis.statut === "brouillon" ? "envoye" : data.devis.statut,
+      envoyeLe: new Date(),
+      majLe: new Date(),
+    })
+    .where(eq(devis.id, id.data));
+
+  revalidatePath("/admin/devis");
+  revalidatePath(`/admin/devis/${id.data}`);
+  return { ok: true };
 }
 
 export async function supprimerDevis(formData: FormData): Promise<void> {
