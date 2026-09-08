@@ -139,7 +139,17 @@ Décision de construire un back-end : gestion des demandes, devis, planning et f
 - Espace `/admin` : tableau de bord minimal, écran Paramètres entreprise, CRUD Clients.
 - Le formulaire de contact enregistre désormais la demande en base (puis envoie l'email) ; liste `/admin/demandes` avec suivi de statut et notes, création d'un client depuis une demande.
 
-**Reste pour la mise en production du back-end :** coordonnées légales complètes d'Antoine (SIRET, assurance décennale, IBAN), régime de TVA confirmé, domaine + comptes Vercel/Supabase.
+### Phase 1 réalisée (devis)
+
+- **Moteur de calcul** (`src/lib/domain/tva.ts`, `montants.ts`) : HT/TVA/TTC en centimes, TVA arrondie par taux sur base cumulée, gère franchise en base et régime réel. Couvert par des tests (`npm test`, node:test).
+- **Numérotation** (`numerotation.ts`) : réservation atomique en transaction, format `D-2026-001`, remise à zéro annuelle des compteurs.
+- **Catalogue de prestations** : CRUD `/admin/prestations` (lignes réutilisables).
+- **Devis** : éditeur de lignes dynamique (ligne libre ou depuis le catalogue), aperçu live des totaux, recalcul serveur autoritaire, statuts, verrouillage à l'acceptation.
+- **PDF** (`@react-pdf/renderer`) : gabarit de devis avec mentions légales (assurance décennale, 293 B / TVA, pénalités), servi par une route authentifiée.
+- **Envoi par email** (Resend) avec le PDF en pièce jointe — nécessite un `RESEND_API_KEY` valide (non configuré en dev).
+- **Page publique** `/devis/[token]` : le client consulte, télécharge le PDF, accepte (nom + horodatage + IP enregistrés) ou refuse.
+
+**Reste pour la mise en production du back-end :** coordonnées légales complètes d'Antoine (SIRET, assurance décennale, IBAN), régime de TVA confirmé, clé Resend + domaine vérifié, domaine + comptes Vercel/Supabase. Phase 2 (planning) à venir.
 
 ---
 

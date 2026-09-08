@@ -124,6 +124,15 @@ développement, puis hébergée (**Supabase**) en production.
 - Hachage des mots de passe (jamais stockés en clair). Utilisé au login et par le script
   `npm run admin:create`.
 
+### @react-pdf/renderer
+- Génère les PDF (devis, plus tard factures) **côté serveur**, à partir de composants React
+  dédiés (`src/lib/pdf/`). Rendu fiable sans navigateur headless. Les PDF sont produits à la
+  volée par des routes (`/admin/devis/[id]/pdf`, `/devis/[token]/pdf`).
+
+### node:test + tsx
+- Les fonctions de calcul pures (`src/lib/domain/`) sont testées avec le lanceur de tests
+  intégré à Node, exécuté en TypeScript via `tsx`. Commande : `npm test`.
+
 ### Migrations Drizzle
 - `npm run db:generate` compare le schéma (`src/lib/db/schema.ts`) à l'état précédent et
   écrit un fichier SQL dans `src/lib/db/migrations/`. `npm run db:migrate` applique les
