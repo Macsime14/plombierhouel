@@ -7,6 +7,7 @@ const liens = [
   { href: "/admin", label: "Tableau de bord" },
   { href: "/admin/demandes", label: "Demandes" },
   { href: "/admin/devis", label: "Devis" },
+  { href: "/admin/factures", label: "Factures" },
   { href: "/admin/planning", label: "Planning" },
   { href: "/admin/clients", label: "Clients" },
   { href: "/admin/prestations", label: "Prestations" },

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { and, count, gte, inArray } from "drizzle-orm";
 
 import { db } from "@/lib/db";
-import { clients, demandes, devis, interventions } from "@/lib/db/schema";
+import { demandes, devis, factures, interventions } from "@/lib/db/schema";
 import { aujourdhuiParis, jourParisVersDate } from "@/lib/domain/dates";
 
 export const metadata = { title: "Tableau de bord" };
@@ -10,32 +10,36 @@ export const metadata = { title: "Tableau de bord" };
 async function compter() {
   const debutJour = jourParisVersDate(aujourdhuiParis());
 
-  const [demandesATraiter, nbClients, devisEnAttente, interventionsAVenir] = await Promise.all([
-    db
-      .select({ n: count() })
-      .from(demandes)
-      .where(inArray(demandes.statut, ["nouveau", "a_rappeler"])),
-    db.select({ n: count() }).from(clients),
-    db
-      .select({ n: count() })
-      .from(devis)
-      .where(inArray(devis.statut, ["envoye", "vu"])),
-    db
-      .select({ n: count() })
-      .from(interventions)
-      .where(
-        and(
-          gte(interventions.debut, debutJour),
-          inArray(interventions.statut, ["planifie", "en_cours"]),
+  const [demandesATraiter, devisEnAttente, interventionsAVenir, facturesImpayees] =
+    await Promise.all([
+      db
+        .select({ n: count() })
+        .from(demandes)
+        .where(inArray(demandes.statut, ["nouveau", "a_rappeler"])),
+      db
+        .select({ n: count() })
+        .from(devis)
+        .where(inArray(devis.statut, ["envoye", "vu"])),
+      db
+        .select({ n: count() })
+        .from(interventions)
+        .where(
+          and(
+            gte(interventions.debut, debutJour),
+            inArray(interventions.statut, ["planifie", "en_cours"]),
+          ),
         ),
-      ),
-  ]);
+      db
+        .select({ n: count() })
+        .from(factures)
+        .where(inArray(factures.statut, ["emise", "payee_partiel"])),
+    ]);
 
   return {
     demandesATraiter: demandesATraiter[0].n,
-    nbClients: nbClients[0].n,
     devisEnAttente: devisEnAttente[0].n,
     interventionsAVenir: interventionsAVenir[0].n,
+    facturesImpayees: facturesImpayees[0].n,
   };
 }
 
@@ -46,7 +50,7 @@ export default async function DashboardPage() {
     { label: "Demandes à traiter", valeur: stats.demandesATraiter, href: "/admin/demandes" },
     { label: "Devis en attente", valeur: stats.devisEnAttente, href: "/admin/devis" },
     { label: "Interventions à venir", valeur: stats.interventionsAVenir, href: "/admin/planning" },
-    { label: "Clients", valeur: stats.nbClients, href: "/admin/clients" },
+    { label: "Factures impayées", valeur: stats.facturesImpayees, href: "/admin/factures" },
   ];
 
   return (

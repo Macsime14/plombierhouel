@@ -7,6 +7,7 @@ import { parametresEntreprise } from "@/lib/db/schema";
 import { PARAMS_ID } from "./parametres";
 
 type TypeDocument = "devis" | "facture" | "avoir";
+type Tx = Parameters<Parameters<typeof db.transaction>[0]>[0];
 
 const PREFIXES: Record<TypeDocument, string> = {
   devis: "D",
@@ -21,49 +22,51 @@ const COLONNES: Record<TypeDocument, "compteurDevis" | "compteurFacture" | "comp
 };
 
 /**
- * Réserve le prochain numéro pour un type de document, de façon **atomique**.
+ * Réserve le prochain numéro, sur une transaction existante.
  *
- * - Verrouille la ligne de paramètres le temps de la transaction.
+ * - Verrouille la ligne de paramètres (`FOR UPDATE`).
  * - Remet les trois compteurs à zéro au passage à une nouvelle année civile
- *   (numérotation continue par année : `D-2026-001`, `D-2026-002`, …).
- * - Les factures exigent une séquence sans rupture : ne réserver un numéro
- *   qu'au moment de l'émission définitive.
+ *   (numérotation continue par année : `F-2026-001`, `F-2026-002`, …).
+ * - Les factures exigent une séquence sans rupture : appeler dans la même
+ *   transaction que l'émission, jamais avant.
  */
-export async function reserverNumero(type: TypeDocument): Promise<string> {
+export async function reserverNumeroDansTx(tx: Tx, type: TypeDocument): Promise<string> {
   const annee = new Date().getFullYear();
   const colonne = COLONNES[type];
 
-  return db.transaction(async (tx) => {
-    const [params] = await tx
-      .select()
-      .from(parametresEntreprise)
-      .where(sql`${parametresEntreprise.id} = ${PARAMS_ID}`)
-      .for("update");
+  const [params] = await tx
+    .select()
+    .from(parametresEntreprise)
+    .where(sql`${parametresEntreprise.id} = ${PARAMS_ID}`)
+    .for("update");
 
-    // La ligne de paramètres n'existe pas encore : on la crée.
-    if (!params) {
-      await tx.insert(parametresEntreprise).values({ id: PARAMS_ID, anneeCompteurs: annee });
-    }
+  if (!params) {
+    await tx.insert(parametresEntreprise).values({ id: PARAMS_ID, anneeCompteurs: annee });
+  }
 
-    const anneeCourante = params?.anneeCompteurs ?? annee;
-    const changementAnnee = anneeCourante !== annee;
+  const anneeCourante = params?.anneeCompteurs ?? annee;
+  const changementAnnee = anneeCourante !== annee;
 
-    const compteurActuel = changementAnnee ? 0 : (params?.[colonne] ?? 0);
-    const prochain = compteurActuel + 1;
+  const compteurActuel = changementAnnee ? 0 : (params?.[colonne] ?? 0);
+  const prochain = compteurActuel + 1;
 
-    const maj: Record<string, number> = { [colonne]: prochain };
-    if (changementAnnee) {
-      maj.anneeCompteurs = annee;
-      maj.compteurDevis = type === "devis" ? prochain : 0;
-      maj.compteurFacture = type === "facture" ? prochain : 0;
-      maj.compteurAvoir = type === "avoir" ? prochain : 0;
-    }
+  const maj: Record<string, number> = { [colonne]: prochain };
+  if (changementAnnee) {
+    maj.anneeCompteurs = annee;
+    maj.compteurDevis = type === "devis" ? prochain : 0;
+    maj.compteurFacture = type === "facture" ? prochain : 0;
+    maj.compteurAvoir = type === "avoir" ? prochain : 0;
+  }
 
-    await tx
-      .update(parametresEntreprise)
-      .set({ ...maj, majLe: new Date() })
-      .where(sql`${parametresEntreprise.id} = ${PARAMS_ID}`);
+  await tx
+    .update(parametresEntreprise)
+    .set({ ...maj, majLe: new Date() })
+    .where(sql`${parametresEntreprise.id} = ${PARAMS_ID}`);
 
-    return `${PREFIXES[type]}-${annee}-${String(prochain).padStart(3, "0")}`;
-  });
+  return `${PREFIXES[type]}-${annee}-${String(prochain).padStart(3, "0")}`;
+}
+
+/** Réserve un numéro dans sa propre transaction (usage : devis). */
+export async function reserverNumero(type: TypeDocument): Promise<string> {
+  return db.transaction((tx) => reserverNumeroDansTx(tx, type));
 }

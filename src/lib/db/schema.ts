@@ -256,7 +256,9 @@ export const factures = pgTable(
   "factures",
   {
     id: uuid("id").primaryKey().defaultRandom(),
-    numero: text("numero").notNull(),
+    // NULL tant que la facture est un brouillon ; attribué définitivement à l'émission
+    // (séquence continue sans rupture). Postgres autorise plusieurs NULL sous un index unique.
+    numero: text("numero"),
     devisId: uuid("devis_id").references(() => devis.id, { onDelete: "set null" }),
     clientId: uuid("client_id")
       .notNull()

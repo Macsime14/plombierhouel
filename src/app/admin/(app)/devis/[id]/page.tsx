@@ -14,6 +14,7 @@ import { formaterEuros } from "@/lib/domain/montants";
 import { DevisEditor, type LigneInitiale } from "../DevisEditor";
 import { StatutDevisSelect } from "../StatutDevisSelect";
 import { DevisActions } from "./DevisActions";
+import { creerFactureDepuisDevis } from "@/lib/admin/factures-actions";
 
 export const metadata = { title: "Devis" };
 
@@ -136,6 +137,18 @@ export default async function DevisDetailPage({ params }: PageProps<"/admin/devi
           >
             Planifier une intervention
           </Link>
+
+          {d.statut === "accepte" ? (
+            <form action={creerFactureDepuisDevis}>
+              <input type="hidden" name="devisId" value={d.id} />
+              <button
+                type="submit"
+                className="w-full cursor-pointer rounded-md border border-border px-3 py-1.5 text-sm hover:border-accent"
+              >
+                Créer la facture
+              </button>
+            </form>
+          ) : null}
 
           <div>
             <p className="mb-1 font-medium">Lien client</p>

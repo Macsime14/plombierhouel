@@ -8,6 +8,13 @@
       "when": 1788887800025,
       "tag": "0000_nostalgic_lifeguard",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1788891749643,
+      "tag": "0001_abnormal_goblin_queen",
+      "breakpoints": true
     }
   ]
 }
