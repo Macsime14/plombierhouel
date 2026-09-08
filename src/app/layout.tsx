@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Bricolage_Grotesque, Public_Sans } from "next/font/google";
 import { siteConfig } from "@/lib/data/site-config";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+// Direction visuelle v2 : Public Sans (texte + données) / Bricolage Grotesque (titres).
+const bodyFont = Public_Sans({
+  variable: "--font-body",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const displayFont = Bricolage_Grotesque({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -37,7 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="fr"
-      className={`${inter.variable} ${playfair.variable} h-full antialiased`}
+      className={`${bodyFont.variable} ${displayFont.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full">

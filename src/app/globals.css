@@ -1,46 +1,72 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Design system : voir design-system/houel-plombier/MASTER.md pour la justification
-   de chaque choix (palette architecture/artisan premium, typographie editoriale). */
+/* Direction visuelle v2 — palette « Zinc & laiton », typo Bricolage Grotesque + Public Sans.
+   Voir docs/brief-design-site-plombier.md. Le design-system/ décrit encore l'ancienne
+   direction : à réécrire une fois la v2 posée. */
 :root {
-  --background: #fbf9f6;
-  --surface: #f3efe8;
-  --surface-muted: #ede7dd;
-  --text: #211d18;
-  --text-muted: #6b6459;
-  --border: #e2dbcd;
-  --accent: #96601f;
+  --background: #f5f6f7;
+  --surface: #ecedf0;
+  --surface-muted: #e3e5e9;
+  --text: #1f2933;
+  --text-muted: #5a6773;
+  --border: #dbdfe3;
+
+  /* Zinc — couleur structurante : boutons primaires, liens, focus, états actifs */
+  --accent: #3e4c59;
+  --accent-hover: #333f4a;
   --on-accent: #ffffff;
+
+  /* Laiton — accent chaud, réservé aux montants clés, filets, marqueurs d'urgence */
+  --accent-warm: #a8842c;
+
+  --success: #40745a;
+  --danger: #a83a2e;
+
+  /* Alias transitoires — supprimés à l'étape « primitives » quand les composants
+     passeront aux tokens sémantiques directement. */
+  --font-inter: var(--font-body);
+  --font-playfair: var(--font-display);
 }
 
 .dark {
-  --background: #111111;
-  --surface: #181818;
-  --surface-muted: #202020;
-  --text: #f2f0ea;
-  --text-muted: #b8b5ae;
-  --border: #2c2c2c;
-  --accent: #d4a045;
-  --on-accent: #111111;
+  --background: #14181c;
+  --surface: #1b2127;
+  --surface-muted: #232a31;
+  --text: #e6eaec;
+  --text-muted: #98a4ad;
+  --border: #2d363d;
+
+  --accent: #8b99a6;
+  --accent-hover: #9aa7b3;
+  --on-accent: #14181c;
+
+  --accent-warm: #c6a653;
+
+  --success: #6fae86;
+  --danger: #d98878;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--text);
-  --font-sans: var(--font-inter);
-  --font-heading: var(--font-playfair);
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-display);
 
   --color-surface: var(--surface);
   --color-surface-muted: var(--surface-muted);
   --color-border: var(--border);
   --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
   --color-on-accent: var(--on-accent);
+  --color-accent-warm: var(--accent-warm);
   --color-text-muted: var(--text-muted);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
 
-  /* Alias conserves pour compatibilite avec le reste du code existant. */
+  /* Alias transitoires pour le code existant (à retirer à l'étape primitives). */
   --color-primary: var(--accent);
-  --color-primary-dark: var(--accent);
+  --color-primary-dark: var(--accent-hover);
   --color-primary-light: var(--surface-muted);
   --color-neutral-700: var(--text);
   --color-neutral-500: var(--text-muted);
@@ -49,7 +75,7 @@
 body {
   background: var(--background);
   color: var(--text);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), "Helvetica Neue", Arial, sans-serif;
   transition:
     background-color 0.15s ease,
     color 0.15s ease,
