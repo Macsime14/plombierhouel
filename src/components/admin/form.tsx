@@ -103,6 +103,33 @@ export function SelectField({
   );
 }
 
+export function CheckboxField({
+  label,
+  name,
+  defaultChecked,
+  hint,
+}: {
+  label: string;
+  name: string;
+  defaultChecked?: boolean;
+  hint?: string;
+}) {
+  return (
+    <div className="flex flex-col gap-1">
+      <label className="flex items-center gap-2 text-sm font-medium">
+        <input
+          type="checkbox"
+          name={name}
+          defaultChecked={defaultChecked}
+          className="size-4 rounded border-border accent-[var(--accent)]"
+        />
+        {label}
+      </label>
+      {hint ? <p className="text-xs text-text-muted">{hint}</p> : null}
+    </div>
+  );
+}
+
 export function FormSection({ titre, children }: { titre: string; children: ReactNode }) {
   return (
     <fieldset className="rounded-lg border border-border p-4">
