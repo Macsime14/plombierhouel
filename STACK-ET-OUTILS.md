@@ -104,21 +104,31 @@ développement, puis hébergée (**Supabase**) en production.
   (un devis appartient à un client, une facture découle d'un devis…). Langage : SQL.
 - Choisie parce qu'elle est robuste, standard, et hébergeable partout à l'identique.
 
-### Drizzle ORM *(à venir, phase 0)*
+### Drizzle ORM
 - Un **ORM** = une couche qui permet de manipuler la base en écrivant du TypeScript plutôt
   que du SQL brut : `db.select().from(clients)` au lieu de `SELECT * FROM clients`.
 - Avantages : c'est typé (l'éditeur connaît les colonnes), et `drizzle-kit` génère les
   **migrations** — des fichiers SQL versionnés qui font évoluer la structure de la base de
   façon reproductible (en dev comme en prod).
 
-### postgres (postgres.js) *(à venir)*
+### postgres (postgres.js)
 - Le **driver** : la petite bibliothèque bas niveau qui ouvre la connexion réseau à Postgres.
   Drizzle s'appuie dessus.
 
-### jose *(à venir, authentification)*
-- Bibliothèque pour créer et vérifier des **JWT** (jetons signés). Servira à gérer la
-  **session** de connexion d'Antoine à l'espace d'administration : un cookie signé que le
-  serveur peut vérifier à chaque requête.
+### jose
+- Bibliothèque pour créer et vérifier des **JWT** (jetons signés). Gère la **session** de
+  connexion à l'espace d'administration : un cookie signé (`houel_session`) que le serveur
+  vérifie à chaque requête, adossé à une table `sessions` pour pouvoir révoquer.
+
+### bcryptjs
+- Hachage des mots de passe (jamais stockés en clair). Utilisé au login et par le script
+  `npm run admin:create`.
+
+### Migrations Drizzle
+- `npm run db:generate` compare le schéma (`src/lib/db/schema.ts`) à l'état précédent et
+  écrit un fichier SQL dans `src/lib/db/migrations/`. `npm run db:migrate` applique les
+  fichiers en attente. Ces fichiers sont versionnés dans Git : la structure de la base se
+  reconstruit à l'identique partout.
 
 ---
 
@@ -234,6 +244,9 @@ c'est le même Postgres des deux côtés.
 | `postcss.config.mjs` | Config Tailwind / PostCSS |
 | `eslint.config.mjs` | Config ESLint |
 | `compose.yaml` | Config du conteneur Postgres (Docker) |
+| `drizzle.config.ts` | Config des migrations Drizzle |
+| `src/proxy.ts` | Redirection des routes `/admin` non authentifiées (ex-`middleware`) |
+| `scripts/create-admin.ts` | Création du compte administrateur (`npm run admin:create`) |
 | `.env.local` | Secrets locaux (**jamais** committé) |
 | `.env.example` | Modèle des variables d'environnement (committé, sans valeurs secrètes) |
 | `.gitignore` | Ce que Git doit ignorer (`node_modules`, `.next`, `.env*`…) |

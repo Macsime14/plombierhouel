@@ -119,11 +119,35 @@ L'utilisateur a fourni un document (`ameliorations_site_moins_IA.md`) très dét
 
 ---
 
-## 11. État actuel du dépôt
+## 11. Démarrage du back-end (branche `nouveau-visu`)
+
+Décision de construire un back-end : gestion des demandes, devis, planning et facturation, avec un espace d'administration protégé pour Antoine. Trois documents de cadrage ont été créés à la racine : `ARCHITECTURE-BACKEND.md` (plan général, modèle de données, contraintes légales de la facturation), `STACK-ET-OUTILS.md` (référence des technologies), et ce journal.
+
+**Choix validés avec l'utilisateur :**
+- Stack : Drizzle ORM + PostgreSQL, sur Next.js/Vercel. En développement, Postgres tourne dans un conteneur **Docker** (installation de Docker Desktop + WSL2 documentée dans `STACK-ET-OUTILS.md`). En production : Supabase (région Europe).
+- Connexion à l'admin : **email + mot de passe** (pas de lien magique), un seul compte.
+- Tableau de bord d'abord **minimal**, à enrichir plus tard.
+- Facturation : solution **maison complète**, factures au format Factur-X, à faire valider par le comptable d'Antoine avant la première facture réelle.
+- Régime de TVA d'Antoine : **à confirmer** — le schéma gère les deux cas (franchise en base / réel), paramétrable.
+- Le SIRET fourni (39030599300029) est celui du **père** (Olivier Houel, entreprise individuelle) : Antoine aura le sien propre quand il reprendra l'activité.
+
+### Phase 0 réalisée (socle)
+
+- Base de données : 14 tables couvrant les phases 0 à 3, migrations versionnées (`src/lib/db`).
+- Authentification : hachage bcrypt, session en base + cookie JWT signé (jose), `proxy.ts` pour la redirection, DAL de vérification. Script `npm run admin:create`.
+- Site public déplacé sous le groupe de routes `(site)` pour que l'admin n'hérite pas de son header/footer.
+- Espace `/admin` : tableau de bord minimal, écran Paramètres entreprise, CRUD Clients.
+- Le formulaire de contact enregistre désormais la demande en base (puis envoie l'email) ; liste `/admin/demandes` avec suivi de statut et notes, création d'un client depuis une demande.
+
+**Reste pour la mise en production du back-end :** coordonnées légales complètes d'Antoine (SIRET, assurance décennale, IBAN), régime de TVA confirmé, domaine + comptes Vercel/Supabase.
+
+---
+
+## 12. État actuel du dépôt
 
 - Dépôt GitHub : https://github.com/Macsime14/plombierhouel
-- Travail de refonte visuelle en cours sur la branche **`changement_visuel`** (non fusionnée dans `master`, non commitée à ce stade — en attente de validation du Hero et du reste par l'utilisateur).
-- Dernier commit sur `master` : `18a2b2f` (accessibilité clavier + premières ruptures du motif carte/icône).
+- Refonte visuelle **et** back-end en cours sur la branche **`nouveau-visu`** (non fusionnée dans `master`). Le visuel n'est pas encore validé par Antoine.
+- `master` reste sur `18a2b2f`.
 
 ---
 
