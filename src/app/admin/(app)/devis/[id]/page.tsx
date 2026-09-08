@@ -5,11 +5,8 @@ import { z } from "zod";
 import { getParametres } from "@/lib/domain/parametres";
 import { chargerDevis, optionsClients, optionsPrestations } from "@/lib/admin/devis-data";
 import { supprimerDevis } from "@/lib/admin/devis-actions";
-import {
-  DEVIS_STATUT_COULEURS,
-  DEVIS_STATUT_LABELS,
-  type DevisStatut,
-} from "@/lib/admin/devis-statuts";
+import { DEVIS_STATUT_LABELS, DEVIS_STATUT_TONE, type DevisStatut } from "@/lib/admin/devis-statuts";
+import { Statut } from "@/components/admin/ui";
 import { formaterEuros } from "@/lib/domain/montants";
 import { DevisEditor, type LigneInitiale } from "../DevisEditor";
 import { StatutDevisSelect } from "../StatutDevisSelect";
@@ -56,13 +53,9 @@ export default async function DevisDetailPage({ params }: PageProps<"/admin/devi
         <h1 className="font-heading text-2xl font-semibold">
           {d.numero}
         </h1>
-        <span
-          className={`inline-block rounded px-2 py-0.5 text-xs ${
-            DEVIS_STATUT_COULEURS[d.statut as DevisStatut]
-          }`}
-        >
+        <Statut tone={DEVIS_STATUT_TONE[d.statut as DevisStatut]}>
           {DEVIS_STATUT_LABELS[d.statut as DevisStatut]}
-        </span>
+        </Statut>
       </div>
 
       <div className="mt-4 grid gap-6 md:grid-cols-[1fr_220px]">

@@ -9,10 +9,11 @@ import {
 } from "@/lib/domain/dates";
 import { interventionsDansPeriode } from "@/lib/admin/interventions-data";
 import {
-  INTERVENTION_STATUT_COULEURS,
   INTERVENTION_STATUT_LABELS,
+  INTERVENTION_STATUT_TONE,
   type InterventionStatut,
 } from "@/lib/admin/intervention-statuts";
+import { Bouton, PageTitre, Statut } from "@/components/admin/ui";
 import { SemaineNav } from "./SemaineNav";
 
 export const metadata = { title: "Planning" };
@@ -51,23 +52,17 @@ export default async function PlanningPage({ searchParams }: PageProps<"/admin/p
 
   return (
     <div>
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="font-heading text-2xl font-semibold">Planning</h1>
-        <div className="flex items-center gap-2">
-          <a
-            href={`/admin/planning/ics?semaine=${lundi}`}
-            className="rounded-md border border-border px-3 py-2 text-sm hover:border-accent"
-          >
-            Exporter la semaine (.ics)
-          </a>
-          <Link
-            href="/admin/planning/nouveau"
-            className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-on-accent hover:opacity-90"
-          >
-            + Nouvelle intervention
-          </Link>
-        </div>
-      </div>
+      <PageTitre
+        titre="Planning"
+        action={
+          <>
+            <Bouton href={`/admin/planning/ics?semaine=${lundi}`} variant="ghost">
+              Exporter la semaine (.ics)
+            </Bouton>
+            <Bouton href="/admin/planning/nouveau">+ Nouvelle intervention</Bouton>
+          </>
+        }
+      />
 
       <div className="mt-4">
         <SemaineNav lundi={lundi} />
@@ -103,12 +98,10 @@ export default async function PlanningPage({ searchParams }: PageProps<"/admin/p
                         {it.clientNom ? (
                           <span className="block text-text-muted">{it.clientNom}</span>
                         ) : null}
-                        <span
-                          className={`mt-1 inline-block rounded px-1 py-0.5 ${
-                            INTERVENTION_STATUT_COULEURS[it.statut as InterventionStatut]
-                          }`}
-                        >
-                          {INTERVENTION_STATUT_LABELS[it.statut as InterventionStatut]}
+                        <span className="mt-1 block">
+                          <Statut tone={INTERVENTION_STATUT_TONE[it.statut as InterventionStatut]}>
+                            {INTERVENTION_STATUT_LABELS[it.statut as InterventionStatut]}
+                          </Statut>
                         </span>
                       </Link>
                     </li>

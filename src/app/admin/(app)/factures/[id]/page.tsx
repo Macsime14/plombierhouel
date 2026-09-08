@@ -10,11 +10,12 @@ import { supprimerPaiement } from "@/lib/admin/paiements-actions";
 import { verifierChaineJournal } from "@/lib/domain/journal";
 import { formaterEuros } from "@/lib/domain/montants";
 import {
-  FACTURE_STATUT_COULEURS,
   FACTURE_STATUT_LABELS,
+  FACTURE_STATUT_TONE,
   factureModifiable,
   type FactureStatut,
 } from "@/lib/admin/facture-statuts";
+import { Statut } from "@/components/admin/ui";
 import { FactureEditor } from "../FactureEditor";
 import { AvoirForm, EmettreForm, PaiementForm } from "./FactureForms";
 import type { LigneInitiale } from "@/components/admin/LignesEditor";
@@ -74,13 +75,9 @@ export default async function FacturePage({ params }: PageProps<"/admin/factures
         <h1 className="font-heading text-2xl font-semibold">
           {f.numero ?? "Brouillon"}
         </h1>
-        <span
-          className={`inline-block rounded px-2 py-0.5 text-xs ${
-            FACTURE_STATUT_COULEURS[f.statut as FactureStatut]
-          }`}
-        >
+        <Statut tone={FACTURE_STATUT_TONE[f.statut as FactureStatut]}>
           {FACTURE_STATUT_LABELS[f.statut as FactureStatut]}
-        </span>
+        </Statut>
       </div>
 
       {brouillon ? (

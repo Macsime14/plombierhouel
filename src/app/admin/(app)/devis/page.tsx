@@ -4,11 +4,8 @@ import { desc, eq } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { clients, devis } from "@/lib/db/schema";
 import { formaterEuros } from "@/lib/domain/montants";
-import {
-  DEVIS_STATUT_COULEURS,
-  DEVIS_STATUT_LABELS,
-  type DevisStatut,
-} from "@/lib/admin/devis-statuts";
+import { DEVIS_STATUT_LABELS, DEVIS_STATUT_TONE, type DevisStatut } from "@/lib/admin/devis-statuts";
+import { Bouton, PageTitre, Statut } from "@/components/admin/ui";
 
 export const metadata = { title: "Devis" };
 
@@ -30,15 +27,10 @@ export default async function DevisPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <h1 className="font-heading text-2xl font-semibold">Devis</h1>
-        <Link
-          href="/admin/devis/nouveau"
-          className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-on-accent hover:opacity-90"
-        >
-          + Nouveau devis
-        </Link>
-      </div>
+      <PageTitre
+        titre="Devis"
+        action={<Bouton href="/admin/devis/nouveau">+ Nouveau devis</Bouton>}
+      />
 
       {liste.length === 0 ? (
         <p className="mt-8 text-sm text-text-muted">Aucun devis pour l’instant.</p>
@@ -68,13 +60,9 @@ export default async function DevisPage() {
                     {formaterEuros(d.totalTtcCents)}
                   </td>
                   <td className="px-4 py-2">
-                    <span
-                      className={`inline-block rounded px-1.5 py-0.5 text-xs ${
-                        DEVIS_STATUT_COULEURS[d.statut as DevisStatut]
-                      }`}
-                    >
+                    <Statut tone={DEVIS_STATUT_TONE[d.statut as DevisStatut]}>
                       {DEVIS_STATUT_LABELS[d.statut as DevisStatut]}
-                    </span>
+                    </Statut>
                   </td>
                 </tr>
               ))}

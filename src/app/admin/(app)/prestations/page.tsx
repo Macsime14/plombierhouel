@@ -4,6 +4,7 @@ import { asc } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { prestations } from "@/lib/db/schema";
 import { formaterEuros } from "@/lib/domain/montants";
+import { Bouton, PageTitre } from "@/components/admin/ui";
 
 export const metadata = { title: "Catalogue de prestations" };
 
@@ -12,20 +13,11 @@ export default async function PrestationsPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <h1 className="font-heading text-2xl font-semibold">
-          Catalogue de prestations
-        </h1>
-        <Link
-          href="/admin/prestations/nouveau"
-          className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-on-accent hover:opacity-90"
-        >
-          + Nouvelle prestation
-        </Link>
-      </div>
-      <p className="mt-1 mb-6 text-sm text-text-muted">
-        Lignes réutilisables pour composer les devis plus vite.
-      </p>
+      <PageTitre
+        titre="Catalogue de prestations"
+        description="Lignes réutilisables pour composer les devis plus vite."
+        action={<Bouton href="/admin/prestations/nouveau">+ Nouvelle prestation</Bouton>}
+      />
 
       {liste.length === 0 ? (
         <p className="mt-8 text-sm text-text-muted">Aucune prestation pour l’instant.</p>

@@ -3,10 +3,11 @@ import Link from "next/link";
 import { listeFactures } from "@/lib/admin/factures-data";
 import { formaterEuros } from "@/lib/domain/montants";
 import {
-  FACTURE_STATUT_COULEURS,
   FACTURE_STATUT_LABELS,
+  FACTURE_STATUT_TONE,
   type FactureStatut,
 } from "@/lib/admin/facture-statuts";
+import { Bouton, PageTitre, Statut } from "@/components/admin/ui";
 
 export const metadata = { title: "Factures" };
 
@@ -17,24 +18,17 @@ export default async function FacturesPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <h1 className="font-heading text-2xl font-semibold">Factures</h1>
-        <div className="flex gap-2">
-          {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- route de téléchargement, pas une page */}
-          <a
-            href="/admin/factures/export"
-            className="rounded-md border border-border px-3 py-2 text-sm hover:border-accent"
-          >
-            Export comptable (.csv)
-          </a>
-          <Link
-            href="/admin/factures/nouvelle"
-            className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-on-accent hover:opacity-90"
-          >
-            + Nouvelle facture
-          </Link>
-        </div>
-      </div>
+      <PageTitre
+        titre="Factures"
+        action={
+          <>
+            <Bouton href="/admin/factures/export" variant="ghost">
+              Export comptable (.csv)
+            </Bouton>
+            <Bouton href="/admin/factures/nouvelle">+ Nouvelle facture</Bouton>
+          </>
+        }
+      />
 
       {liste.length === 0 ? (
         <p className="mt-8 text-sm text-text-muted">Aucune facture pour l’instant.</p>
@@ -66,13 +60,9 @@ export default async function FacturesPage() {
                     {formaterEuros(f.totalTtcCents)}
                   </td>
                   <td className="px-4 py-2">
-                    <span
-                      className={`inline-block rounded px-1.5 py-0.5 text-xs ${
-                        FACTURE_STATUT_COULEURS[f.statut as FactureStatut]
-                      }`}
-                    >
+                    <Statut tone={FACTURE_STATUT_TONE[f.statut as FactureStatut]}>
                       {FACTURE_STATUT_LABELS[f.statut as FactureStatut]}
-                    </span>
+                    </Statut>
                   </td>
                 </tr>
               ))}

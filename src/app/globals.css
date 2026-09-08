@@ -25,6 +25,18 @@
 
   --success: #40745a;
   --danger: #a83a2e;
+
+  /* Tons sémantiques des pastilles de statut — distincts de l'accent (brief / UI). */
+  --tone-neutre-bg: #e3e5e9;
+  --tone-neutre-fg: #55616d;
+  --tone-info-bg: #dde9ed;
+  --tone-info-fg: #1d5464;
+  --tone-attention-bg: #f3e7d1;
+  --tone-attention-fg: #78550f;
+  --tone-positif-bg: #dcecdf;
+  --tone-positif-fg: #2c6042;
+  --tone-negatif-bg: #f1dcd7;
+  --tone-negatif-fg: #883024;
 }
 
 .dark {
@@ -45,6 +57,17 @@
 
   --success: #6fae86;
   --danger: #d98878;
+
+  --tone-neutre-bg: #262e35;
+  --tone-neutre-fg: #97a3ac;
+  --tone-info-bg: #1c3a44;
+  --tone-info-fg: #8fc7d6;
+  --tone-attention-bg: #3b3117;
+  --tone-attention-fg: #d7b775;
+  --tone-positif-bg: #1e3a2b;
+  --tone-positif-fg: #7cc298;
+  --tone-negatif-bg: #3c211c;
+  --tone-negatif-fg: #e0a094;
 }
 
 @theme inline {

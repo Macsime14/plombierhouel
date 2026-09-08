@@ -1,3 +1,5 @@
+import type { Tone } from "@/components/admin/ui";
+
 export const FACTURE_STATUTS = [
   "brouillon",
   "emise",
@@ -16,12 +18,12 @@ export const FACTURE_STATUT_LABELS: Record<FactureStatut, string> = {
   annulee: "Annulée",
 };
 
-export const FACTURE_STATUT_COULEURS: Record<FactureStatut, string> = {
-  brouillon: "bg-surface-muted text-text",
-  emise: "bg-blue-100 text-blue-800",
-  payee_partiel: "bg-amber-100 text-amber-800",
-  payee: "bg-green-100 text-green-800",
-  annulee: "bg-red-100 text-red-800 line-through",
+export const FACTURE_STATUT_TONE: Record<FactureStatut, Tone> = {
+  brouillon: "neutre",
+  emise: "info",
+  payee_partiel: "attention",
+  payee: "positif",
+  annulee: "negatif",
 };
 
 /** Une facture émise est immuable : seuls un paiement ou un avoir peuvent la faire évoluer. */

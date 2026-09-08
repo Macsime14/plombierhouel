@@ -3,6 +3,7 @@ import { desc } from "drizzle-orm";
 
 import { db } from "@/lib/db";
 import { clients } from "@/lib/db/schema";
+import { Bouton, PageTitre } from "@/components/admin/ui";
 
 export const metadata = { title: "Clients" };
 
@@ -21,15 +22,10 @@ export default async function ClientsPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <h1 className="font-heading text-2xl font-semibold">Clients</h1>
-        <Link
-          href="/admin/clients/nouveau"
-          className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-on-accent hover:opacity-90"
-        >
-          + Nouveau client
-        </Link>
-      </div>
+      <PageTitre
+        titre="Clients"
+        action={<Bouton href="/admin/clients/nouveau">+ Nouveau client</Bouton>}
+      />
 
       {liste.length === 0 ? (
         <p className="mt-8 text-sm text-text-muted">Aucun client pour l’instant.</p>

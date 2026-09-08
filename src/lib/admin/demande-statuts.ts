@@ -1,3 +1,5 @@
+import type { Tone } from "@/components/admin/ui";
+
 export const DEMANDE_STATUTS = [
   "nouveau",
   "a_rappeler",
@@ -16,10 +18,10 @@ export const DEMANDE_STATUT_LABELS: Record<DemandeStatut, string> = {
   perdu: "Perdu",
 };
 
-export const DEMANDE_STATUT_COULEURS: Record<DemandeStatut, string> = {
-  nouveau: "bg-blue-100 text-blue-800",
-  a_rappeler: "bg-amber-100 text-amber-800",
-  devis_envoye: "bg-violet-100 text-violet-800",
-  gagne: "bg-green-100 text-green-800",
-  perdu: "bg-surface-muted text-text",
+export const DEMANDE_STATUT_TONE: Record<DemandeStatut, Tone> = {
+  nouveau: "info",
+  a_rappeler: "attention",
+  devis_envoye: "info",
+  gagne: "positif",
+  perdu: "negatif",
 };

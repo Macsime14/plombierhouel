@@ -4,10 +4,11 @@ import { desc } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { demandes } from "@/lib/db/schema";
 import {
-  DEMANDE_STATUT_COULEURS,
   DEMANDE_STATUT_LABELS,
+  DEMANDE_STATUT_TONE,
   type DemandeStatut,
 } from "@/lib/admin/demande-statuts";
+import { PageTitre, Statut } from "@/components/admin/ui";
 import { StatutSelect } from "./StatutSelect";
 
 export const metadata = { title: "Demandes" };
@@ -19,10 +20,10 @@ export default async function DemandesPage() {
 
   return (
     <div>
-      <h1 className="font-heading text-2xl font-semibold">Demandes</h1>
-      <p className="mt-1 mb-6 text-sm text-text-muted">
-        Demandes reçues via le formulaire de contact du site.
-      </p>
+      <PageTitre
+        titre="Demandes"
+        description="Demandes reçues via le formulaire de contact du site."
+      />
 
       {liste.length === 0 ? (
         <p className="mt-8 text-sm text-text-muted">Aucune demande pour l’instant.</p>
@@ -52,13 +53,11 @@ export default async function DemandesPage() {
                   <td className="px-4 py-2 text-text-muted">{d.typeBesoin}</td>
                   <td className="px-4 py-2">
                     <StatutSelect id={d.id} statut={d.statut} />
-                    <span
-                      className={`mt-1 inline-block rounded px-1.5 py-0.5 text-xs ${
-                        DEMANDE_STATUT_COULEURS[d.statut as DemandeStatut]
-                      }`}
-                    >
-                      {DEMANDE_STATUT_LABELS[d.statut as DemandeStatut]}
-                    </span>
+                    <div className="mt-1">
+                      <Statut tone={DEMANDE_STATUT_TONE[d.statut as DemandeStatut]}>
+                        {DEMANDE_STATUT_LABELS[d.statut as DemandeStatut]}
+                      </Statut>
+                    </div>
                   </td>
                 </tr>
               ))}
