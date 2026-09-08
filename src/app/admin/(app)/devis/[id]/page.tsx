@@ -128,6 +128,15 @@ export default async function DevisDetailPage({ params }: PageProps<"/admin/devi
             )}
           </div>
 
+          <Link
+            href={`/admin/planning/nouveau?devis=${d.id}&client=${d.clientId}&titre=${encodeURIComponent(
+              `Intervention — ${d.numero}`,
+            )}`}
+            className="rounded-md border border-border px-3 py-1.5 text-center text-sm hover:border-accent"
+          >
+            Planifier une intervention
+          </Link>
+
           <div>
             <p className="mb-1 font-medium">Lien client</p>
             <code className="block rounded bg-surface px-2 py-1 text-xs break-all">

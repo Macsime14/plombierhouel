@@ -1,18 +1,42 @@
 import Link from "next/link";
-import { count, inArray } from "drizzle-orm";
+import { and, count, gte, inArray } from "drizzle-orm";
 
 import { db } from "@/lib/db";
-import { clients, demandes } from "@/lib/db/schema";
+import { clients, demandes, devis, interventions } from "@/lib/db/schema";
+import { aujourdhuiParis, jourParisVersDate } from "@/lib/domain/dates";
 
 export const metadata = { title: "Tableau de bord" };
 
 async function compter() {
-  const [demandesATraiter] = await db
-    .select({ n: count() })
-    .from(demandes)
-    .where(inArray(demandes.statut, ["nouveau", "a_rappeler"]));
-  const [nbClients] = await db.select({ n: count() }).from(clients);
-  return { demandesATraiter: demandesATraiter.n, nbClients: nbClients.n };
+  const debutJour = jourParisVersDate(aujourdhuiParis());
+
+  const [demandesATraiter, nbClients, devisEnAttente, interventionsAVenir] = await Promise.all([
+    db
+      .select({ n: count() })
+      .from(demandes)
+      .where(inArray(demandes.statut, ["nouveau", "a_rappeler"])),
+    db.select({ n: count() }).from(clients),
+    db
+      .select({ n: count() })
+      .from(devis)
+      .where(inArray(devis.statut, ["envoye", "vu"])),
+    db
+      .select({ n: count() })
+      .from(interventions)
+      .where(
+        and(
+          gte(interventions.debut, debutJour),
+          inArray(interventions.statut, ["planifie", "en_cours"]),
+        ),
+      ),
+  ]);
+
+  return {
+    demandesATraiter: demandesATraiter[0].n,
+    nbClients: nbClients[0].n,
+    devisEnAttente: devisEnAttente[0].n,
+    interventionsAVenir: interventionsAVenir[0].n,
+  };
 }
 
 export default async function DashboardPage() {
@@ -20,9 +44,9 @@ export default async function DashboardPage() {
 
   const cartes = [
     { label: "Demandes à traiter", valeur: stats.demandesATraiter, href: "/admin/demandes" },
+    { label: "Devis en attente", valeur: stats.devisEnAttente, href: "/admin/devis" },
+    { label: "Interventions à venir", valeur: stats.interventionsAVenir, href: "/admin/planning" },
     { label: "Clients", valeur: stats.nbClients, href: "/admin/clients" },
-    { label: "Devis en attente", valeur: "—", href: "/admin/devis", indispo: true },
-    { label: "Factures impayées", valeur: "—", href: "/admin/factures", indispo: true },
   ];
 
   return (
@@ -40,10 +64,7 @@ export default async function DashboardPage() {
             className="rounded-lg border border-border bg-surface p-4 transition-colors hover:border-accent"
           >
             <p className="text-3xl font-semibold tabular-nums">{carte.valeur}</p>
-            <p className="mt-1 text-sm text-text-muted">
-              {carte.label}
-              {carte.indispo ? " (bientôt)" : ""}
-            </p>
+            <p className="mt-1 text-sm text-text-muted">{carte.label}</p>
           </Link>
         ))}
       </div>
@@ -52,16 +73,22 @@ export default async function DashboardPage() {
         <h2 className="text-sm font-medium text-text-muted">Raccourcis</h2>
         <div className="mt-2 flex flex-wrap gap-2">
           <Link
+            href="/admin/devis/nouveau"
+            className="rounded-md border border-border px-3 py-1.5 text-sm hover:border-accent"
+          >
+            + Nouveau devis
+          </Link>
+          <Link
             href="/admin/clients/nouveau"
             className="rounded-md border border-border px-3 py-1.5 text-sm hover:border-accent"
           >
             + Nouveau client
           </Link>
           <Link
-            href="/admin/parametres"
+            href="/admin/planning/nouveau"
             className="rounded-md border border-border px-3 py-1.5 text-sm hover:border-accent"
           >
-            Paramètres de l’entreprise
+            + Nouvelle intervention
           </Link>
         </div>
       </div>
