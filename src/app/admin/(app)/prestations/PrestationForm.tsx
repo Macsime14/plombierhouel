@@ -8,6 +8,7 @@ import {
   FormSection,
   SubmitButton,
   TextAreaField,
+  UnitesDatalist,
 } from "@/components/admin/form";
 import {
   creerPrestation,
@@ -27,6 +28,7 @@ export function PrestationForm({ prestation }: { prestation?: Prestation }) {
   return (
     <form action={formAction} className="flex flex-col gap-6">
       {p ? <input type="hidden" name="id" value={p.id} /> : null}
+      <UnitesDatalist />
 
       <FormSection titre="Prestation">
         <div className="sm:col-span-2">
@@ -35,7 +37,13 @@ export function PrestationForm({ prestation }: { prestation?: Prestation }) {
         <div className="sm:col-span-2">
           <TextAreaField label="Description" name="description" defaultValue={p?.description} rows={2} />
         </div>
-        <Field label="Unité" name="unite" defaultValue={p?.unite ?? "u"} hint="Ex : u, h, m, m², forfait" />
+        <Field
+          label="Unité"
+          name="unite"
+          defaultValue={p?.unite ?? "u"}
+          list="unites-courantes"
+          hint="Ce que compte la quantité : u (à l’unité), h (heure), m (mètre), m² (surface), forfait (prix fixe)…"
+        />
         <Field
           label="Prix unitaire HT (€)"
           name="puCents"
