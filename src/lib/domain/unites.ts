@@ -1,6 +1,5 @@
 /**
- * Unités de mesure proposées pour les lignes de devis / factures.
- * Le champ reste libre : cette liste n'est qu'une aide à la saisie (datalist).
+ * Unités de mesure proposées pour les lignes de devis / factures (liste déroulante).
  */
 export const UNITES_COURANTES: { value: string; label: string }[] = [
   { value: "u", label: "u — à l’unité (pièce, acte)" },
@@ -14,3 +13,14 @@ export const UNITES_COURANTES: { value: string; label: string }[] = [
   { value: "ens", label: "ens — ensemble / lot" },
   { value: "kg", label: "kg — kilogramme" },
 ];
+
+/**
+ * Options pour un <select>, en garantissant que la valeur actuelle figure dans la liste
+ * (utile pour une prestation enregistrée avec une unité personnalisée).
+ */
+export function optionsUnites(valeurActuelle?: string | null): { value: string; label: string }[] {
+  if (valeurActuelle && !UNITES_COURANTES.some((u) => u.value === valeurActuelle)) {
+    return [{ value: valeurActuelle, label: valeurActuelle }, ...UNITES_COURANTES];
+  }
+  return UNITES_COURANTES;
+}

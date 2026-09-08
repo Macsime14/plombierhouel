@@ -2,8 +2,6 @@
 
 import type { ReactNode } from "react";
 
-import { UNITES_COURANTES } from "@/lib/domain/unites";
-
 const inputClass =
   "w-full rounded-md border border-border bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent";
 
@@ -24,13 +22,7 @@ export function Field({
   type = "text",
   autoComplete,
   placeholder,
-  list,
-}: BaseProps & {
-  type?: string;
-  autoComplete?: string;
-  placeholder?: string;
-  list?: string;
-}) {
+}: BaseProps & { type?: string; autoComplete?: string; placeholder?: string }) {
   return (
     <div className="flex flex-col gap-1">
       <label htmlFor={name} className="text-sm font-medium">
@@ -44,23 +36,11 @@ export function Field({
         required={required}
         autoComplete={autoComplete}
         placeholder={placeholder}
-        list={list}
         defaultValue={defaultValue ?? ""}
         className={inputClass}
       />
       {hint ? <p className="text-xs text-text-muted">{hint}</p> : null}
     </div>
-  );
-}
-
-/** Liste de suggestions d'unités, à placer une fois par formulaire (id="unites-courantes"). */
-export function UnitesDatalist() {
-  return (
-    <datalist id="unites-courantes">
-      {UNITES_COURANTES.map((u) => (
-        <option key={u.value} value={u.value} label={u.label} />
-      ))}
-    </datalist>
   );
 }
 

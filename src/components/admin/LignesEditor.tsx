@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 
 import { formaterEuros, saisieVersCents } from "@/lib/domain/montants";
 import { calculerTotaux, type LigneCalcul } from "@/lib/domain/tva";
-import { UNITES_COURANTES } from "@/lib/domain/unites";
+import { optionsUnites } from "@/lib/domain/unites";
 
 export type LigneInitiale = {
   prestationId: string | null;
@@ -109,11 +109,6 @@ export function LignesEditor({
   return (
     <div className="flex flex-col gap-4">
       <input type="hidden" name={name} value={json} />
-      <datalist id="unites-courantes">
-        {UNITES_COURANTES.map((u) => (
-          <option key={u.value} value={u.value} label={u.label} />
-        ))}
-      </datalist>
 
       <div className="rounded-lg border border-border">
         <div className="border-b border-border bg-surface px-3 py-2 text-sm font-medium text-text-muted">
@@ -158,13 +153,18 @@ export function LignesEditor({
                       />
                     </td>
                     <td className="px-3 py-2">
-                      <input
+                      <select
                         value={r.unite}
                         onChange={(e) => maj(r.key, "unite", e.target.value)}
-                        list="unites-courantes"
-                        className={`${inputCls} w-16`}
+                        className={`${inputCls} w-24`}
                         aria-label="Unité"
-                      />
+                      >
+                        {optionsUnites(r.unite).map((u) => (
+                          <option key={u.value} value={u.value}>
+                            {u.value}
+                          </option>
+                        ))}
+                      </select>
                     </td>
                     <td className="px-3 py-2">
                       <input
