@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { contactSchema } from "@/lib/validation/contactSchema";
 import { sendContactEmail } from "@/lib/email/sendContactEmail";
+import { db } from "@/lib/db";
+import { demandes } from "@/lib/db/schema";
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -15,13 +17,33 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
+  const { website, ...data } = parsed.data;
+  void website;
+
+  // 1. Enregistrement en base (prioritaire : on ne veut jamais perdre une demande).
   try {
-    const { website, ...data } = parsed.data;
-    void website;
-    await sendContactEmail(data);
-    return NextResponse.json({ ok: true });
+    await db.insert(demandes).values({
+      nom: data.name,
+      email: data.email,
+      telephone: data.phone,
+      typeBesoin: data.serviceType,
+      message: data.message,
+      source: "formulaire_site",
+    });
   } catch (error) {
-    console.error("Erreur envoi email de contact:", error);
-    return NextResponse.json({ error: "Une erreur est survenue, merci de réessayer." }, { status: 500 });
+    console.error("Erreur enregistrement demande de contact:", error);
+    return NextResponse.json(
+      { error: "Une erreur est survenue, merci de réessayer." },
+      { status: 500 },
+    );
   }
+
+  // 2. Notification par email (best-effort : la demande est déjà sauvegardée).
+  try {
+    await sendContactEmail(data);
+  } catch (error) {
+    console.error("Erreur envoi email de contact (demande tout de même enregistrée):", error);
+  }
+
+  return NextResponse.json({ ok: true });
 }
