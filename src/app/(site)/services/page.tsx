@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { ServicesList } from "@/components/sections/ServicesList";
 import { getSiteData } from "@/lib/domain/site-data";
+import { getServicesSitePublies } from "@/lib/domain/services-site";
 
 export async function generateMetadata(): Promise<Metadata> {
   const site = await getSiteData();
@@ -12,13 +13,15 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const services = await getServicesSitePublies();
+
   return (
     <section className="py-16 sm:py-24">
       <Container>
         <SectionTitle title="Ce que je fais" />
         <div className="mt-10">
-          <ServicesList />
+          <ServicesList services={services} />
         </div>
       </Container>
     </section>

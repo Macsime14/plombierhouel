@@ -140,6 +140,19 @@ export const contenuSite = pgTable("contenu_site", {
   majLe: timestamp("maj_le", { withTimezone: true }).notNull().defaultNow(),
 });
 
+export const servicesSite = pgTable("services_site", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  slug: text("slug").notNull(),
+  titre: text("titre").notNull(),
+  description: text("description").notNull().default(""),
+  photoUrl: text("photo_url"),
+  photoAlt: text("photo_alt"),
+  ordre: integer("ordre").notNull().default(0),
+  actif: boolean("actif").notNull().default(true),
+  creeLe: timestamp("cree_le", { withTimezone: true }).notNull().defaultNow(),
+  majLe: timestamp("maj_le", { withTimezone: true }).notNull().defaultNow(),
+});
+
 /* ------------------------------------------------------------------ */
 /* Clients (phase 0)                                                   */
 /* ------------------------------------------------------------------ */

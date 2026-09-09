@@ -13,9 +13,10 @@ import { Differentiators } from "@/components/sections/Differentiators";
 import { Qualifications } from "@/components/sections/Qualifications";
 import { InterventionZone } from "@/components/sections/InterventionZone";
 import { getSiteData } from "@/lib/domain/site-data";
+import { getServicesSitePublies } from "@/lib/domain/services-site";
 
 export default async function Home() {
-  const site = await getSiteData();
+  const [site, services] = await Promise.all([getSiteData(), getServicesSitePublies()]);
 
   return (
     <>
@@ -27,7 +28,7 @@ export default async function Home() {
         <Container>
           <SectionTitle title="Ce que je fais" />
           <div className="mt-10">
-            <ServicesList limit={4} />
+            <ServicesList services={services} limit={4} />
           </div>
           <div className="mt-8">
             <Link
