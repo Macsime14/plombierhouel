@@ -11,6 +11,7 @@ const liens = [
   { href: "/admin/planning", label: "Planning" },
   { href: "/admin/clients", label: "Clients" },
   { href: "/admin/prestations", label: "Prestations" },
+  { href: "/admin/site", label: "Contenu du site" },
   { href: "/admin/parametres", label: "Paramètres" },
 ];
 

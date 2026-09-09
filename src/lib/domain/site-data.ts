@@ -101,3 +101,36 @@ export const getSiteData = cache(async (): Promise<SiteData> => {
 });
 
 export { DEFAUTS as CONTENU_SITE_DEFAUTS };
+
+export type ContenuSiteRow = typeof contenuSite.$inferSelect;
+type ContenuModifiable = Partial<Omit<ContenuSiteRow, "id" | "majLe">>;
+
+/** Ligne `contenu_site` telle quelle (pour l'écran d'édition), ou les valeurs par défaut. */
+export async function getContenuSiteRow(): Promise<ContenuSiteRow> {
+  const [row] = await db.select().from(contenuSite).where(eq(contenuSite.id, 1)).limit(1);
+  return (
+    row ?? {
+      id: 1,
+      nomAffiche: DEFAUTS.nomAffiche,
+      slogan: DEFAUTS.slogan,
+      zoneTexte: DEFAUTS.zoneTexte,
+      horaires: DEFAUTS.horaires,
+      urlPublique: DEFAUTS.urlPublique,
+      aboutIntro: DEFAUTS.aboutIntro,
+      aboutParagraphes: DEFAUTS.aboutParagraphes,
+      aboutTags: DEFAUTS.aboutTags,
+      heroPhotoUrl: DEFAUTS.heroPhotoUrl,
+      heroPhotoAlt: DEFAUTS.heroPhotoAlt,
+      aboutPhotoUrl: DEFAUTS.aboutPhotoUrl,
+      aboutPhotoAlt: DEFAUTS.aboutPhotoAlt,
+      majLe: new Date(0),
+    }
+  );
+}
+
+export async function upsertContenuSite(valeurs: ContenuModifiable): Promise<void> {
+  await db
+    .insert(contenuSite)
+    .values({ id: 1, ...valeurs, majLe: new Date() })
+    .onConflictDoUpdate({ target: contenuSite.id, set: { ...valeurs, majLe: new Date() } });
+}
