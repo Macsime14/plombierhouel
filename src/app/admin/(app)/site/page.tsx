@@ -15,12 +15,17 @@ export default async function SitePage() {
         titre="Contenu du site"
         description="Ce qui s’affiche sur le site public : identité, zone, présentation, photos."
       />
-      <p className="mb-6 text-sm text-text-muted">
+      <p className="mb-4 text-sm text-text-muted">
         Le téléphone, l’email, l’adresse et le SIRET affichés sur le site viennent des{" "}
         <Link href="/admin/parametres" className="text-accent hover:underline">
           Paramètres de l’entreprise
         </Link>
         .
+      </p>
+      <p className="mb-6 text-sm">
+        <Link href="/admin/site/services" className="text-accent hover:underline">
+          Gérer les services affichés →
+        </Link>
       </p>
       <ContenuSiteForm contenu={contenu} />
     </div>
