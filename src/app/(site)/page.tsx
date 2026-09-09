@@ -12,14 +12,16 @@ import { ProcessSteps } from "@/components/sections/ProcessSteps";
 import { Differentiators } from "@/components/sections/Differentiators";
 import { Qualifications } from "@/components/sections/Qualifications";
 import { InterventionZone } from "@/components/sections/InterventionZone";
-import { siteConfig } from "@/lib/data/site-config";
+import { getSiteData } from "@/lib/domain/site-data";
 
-export default function Home() {
+export default async function Home() {
+  const site = await getSiteData();
+
   return (
     <>
-      <Hero />
+      <Hero phoneHref={site.phoneHref} photo={site.heroPhoto} />
       <Reassurance />
-      <About />
+      <About about={site.about} photo={site.aboutPhoto} />
 
       <section className="py-16 sm:py-24">
         <Container>
@@ -57,7 +59,7 @@ export default function Home() {
 
       <section className="py-16 sm:py-24">
         <Container>
-          <SectionTitle title={`Nous intervenons à ${siteConfig.areaDescription}`} />
+          <SectionTitle title={`Nous intervenons à ${site.areaDescription}`} />
           <div className="mt-8">
             <InterventionZone />
           </div>
@@ -76,7 +78,7 @@ export default function Home() {
             <Button href="/contact" className="w-full sm:w-auto">
               Demander un devis
             </Button>
-            <Button href={siteConfig.phoneHref} variant="secondary" className="w-full sm:w-auto">
+            <Button href={site.phoneHref} variant="secondary" className="w-full sm:w-auto">
               Appeler
             </Button>
           </div>

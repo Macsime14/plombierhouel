@@ -119,6 +119,28 @@ export const parametresEntreprise = pgTable("parametres_entreprise", {
 });
 
 /* ------------------------------------------------------------------ */
+/* Contenu de la vitrine (éditable depuis l'admin) — table à une ligne */
+/* ------------------------------------------------------------------ */
+
+export const contenuSite = pgTable("contenu_site", {
+  id: integer("id").primaryKey().default(1),
+  nomAffiche: text("nom_affiche"),
+  slogan: text("slogan"),
+  zoneTexte: text("zone_texte"),
+  horaires: text("horaires"),
+  urlPublique: text("url_publique"),
+  aboutIntro: text("about_intro"),
+  // Tableaux de chaînes : paragraphes de la section « à propos », étiquettes.
+  aboutParagraphes: jsonb("about_paragraphes").notNull().default([]),
+  aboutTags: jsonb("about_tags").notNull().default([]),
+  heroPhotoUrl: text("hero_photo_url"),
+  heroPhotoAlt: text("hero_photo_alt"),
+  aboutPhotoUrl: text("about_photo_url"),
+  aboutPhotoAlt: text("about_photo_alt"),
+  majLe: timestamp("maj_le", { withTimezone: true }).notNull().defaultNow(),
+});
+
+/* ------------------------------------------------------------------ */
 /* Clients (phase 0)                                                   */
 /* ------------------------------------------------------------------ */
 

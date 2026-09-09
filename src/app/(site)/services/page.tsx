@@ -2,12 +2,15 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { ServicesList } from "@/components/sections/ServicesList";
-import { siteConfig } from "@/lib/data/site-config";
+import { getSiteData } from "@/lib/domain/site-data";
 
-export const metadata: Metadata = {
-  title: "Nos services",
-  description: `Découvrez tous les services de plomberie et de chauffage proposés par ${siteConfig.companyName} : dépannage, chauffage, sanitaires, recherche de fuite et rénovation.`,
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const site = await getSiteData();
+  return {
+    title: "Nos services",
+    description: `Découvrez tous les services de plomberie et de chauffage proposés par ${site.companyName} : dépannage, chauffage, sanitaires, recherche de fuite et rénovation.`,
+  };
+}
 
 export default function ServicesPage() {
   return (

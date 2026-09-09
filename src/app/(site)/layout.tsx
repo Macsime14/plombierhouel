@@ -1,28 +1,39 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { siteConfig } from "@/lib/data/site-config";
+import { getSiteData } from "@/lib/domain/site-data";
 
-export const metadata: Metadata = {
-  openGraph: {
-    title: siteConfig.companyName,
-    description: siteConfig.tagline,
-    images: ["/images/logo.png"],
-    locale: "fr_FR",
-    type: "website",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const site = await getSiteData();
+  return {
+    metadataBase: new URL(site.url),
+    title: {
+      default: `${site.companyName} — Plombier chauffagiste à ${site.areaDescription}`,
+      template: `%s | ${site.companyName}`,
+    },
+    description: `${site.companyName}, plombier chauffagiste à ${site.areaDescription} : dépannage, chauffage, pompe à chaleur, climatisation, sanitaires et rénovation. Devis gratuit.`,
+    openGraph: {
+      title: site.companyName,
+      description: site.tagline,
+      images: ["/images/logo.png"],
+      locale: "fr_FR",
+      type: "website",
+    },
+  };
+}
 
-export default function SiteLayout({ children }: LayoutProps<"/">) {
+export default async function SiteLayout({ children }: LayoutProps<"/">) {
+  const site = await getSiteData();
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": ["Plumber", "HVACBusiness"],
-    name: siteConfig.companyName,
-    telephone: siteConfig.phone,
-    email: siteConfig.email,
-    address: siteConfig.address,
-    areaServed: siteConfig.areaDescription,
-    url: siteConfig.url,
+    name: site.companyName,
+    telephone: site.phone,
+    email: site.email,
+    address: site.address,
+    areaServed: site.areaDescription,
+    url: site.url,
   };
 
   return (
@@ -31,9 +42,13 @@ export default function SiteLayout({ children }: LayoutProps<"/">) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Header />
+      <Header
+        companyName={site.companyName}
+        phone={site.phone}
+        phoneHref={site.phoneHref}
+      />
       <main className="flex-1">{children}</main>
-      <Footer />
+      <Footer site={site} />
     </div>
   );
 }

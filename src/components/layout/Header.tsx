@@ -6,7 +6,6 @@ import { useState } from "react";
 import { Menu, Phone, X } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import { siteConfig } from "@/lib/data/site-config";
 
 const navLinks = [
   { href: "/", label: "Accueil" },
@@ -15,7 +14,15 @@ const navLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
-export function Header() {
+export function Header({
+  companyName,
+  phone,
+  phoneHref,
+}: {
+  companyName: string;
+  phone: string;
+  phoneHref: string;
+}) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -28,19 +35,19 @@ export function Header() {
         >
           <Image
             src="/images/logo.png"
-            alt={siteConfig.companyName}
+            alt={companyName}
             width={32}
             height={32}
             className="h-8 w-8 dark:hidden"
           />
           <Image
             src="/images/logo-dark.png"
-            alt={siteConfig.companyName}
+            alt={companyName}
             width={32}
             height={32}
             className="hidden h-8 w-8 dark:block"
           />
-          {siteConfig.companyName}
+          {companyName}
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
@@ -58,11 +65,11 @@ export function Header() {
         <div className="hidden items-center gap-4 md:flex">
           <ThemeToggle />
           <a
-            href={siteConfig.phoneHref}
+            href={phoneHref}
             className="flex items-center gap-2 text-sm text-text transition-colors hover:text-accent"
           >
             <Phone size={16} />
-            {siteConfig.phone}
+            {phone}
           </a>
           <Link
             href="/contact"
@@ -104,11 +111,11 @@ export function Header() {
               </Link>
             ))}
             <a
-              href={siteConfig.phoneHref}
+              href={phoneHref}
               className="mt-2 flex cursor-pointer items-center justify-center gap-2 rounded-sm bg-accent-warm px-4 py-3 text-sm font-medium text-on-accent-warm"
             >
               <Phone size={16} />
-              {siteConfig.phone}
+              {phone}
             </a>
           </Container>
         </div>

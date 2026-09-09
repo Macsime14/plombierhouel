@@ -3,14 +3,19 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { ContactForm } from "@/components/sections/ContactForm";
-import { siteConfig } from "@/lib/data/site-config";
+import { getSiteData } from "@/lib/domain/site-data";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description: `Contactez ${siteConfig.companyName} pour une demande de devis ou une intervention à ${siteConfig.areaDescription}.`,
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const site = await getSiteData();
+  return {
+    title: "Contact",
+    description: `Contactez ${site.companyName} pour une demande de devis ou une intervention à ${site.areaDescription}.`,
+  };
+}
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const site = await getSiteData();
+
   return (
     <section className="py-16 sm:py-24">
       <Container>
@@ -25,26 +30,26 @@ export default function ContactPage() {
           </div>
 
           <div className="space-y-4 lg:col-span-2">
-            <div className="border border-border bg-surface p-6">
+            <div className="rounded-sm border border-border bg-surface p-6">
               <p className="flex items-center gap-3 text-sm text-text">
                 <Phone size={18} className="text-accent" />
-                <a href={siteConfig.phoneHref} className="hover:text-accent">
-                  {siteConfig.phone}
+                <a href={site.phoneHref} className="hover:text-accent">
+                  {site.phone}
                 </a>
               </p>
               <p className="mt-3 flex items-center gap-3 text-sm text-text">
                 <Mail size={18} className="text-accent" />
-                <a href={`mailto:${siteConfig.email}`} className="hover:text-accent">
-                  {siteConfig.email}
+                <a href={`mailto:${site.email}`} className="hover:text-accent">
+                  {site.email}
                 </a>
               </p>
               <p className="mt-3 flex items-center gap-3 text-sm text-text">
                 <MapPin size={18} className="text-accent" />
-                {siteConfig.address}
+                {site.address}
               </p>
               <p className="mt-3 flex items-center gap-3 text-sm text-text">
                 <Clock size={18} className="text-accent" />
-                {siteConfig.hours}
+                {site.hours}
               </p>
             </div>
           </div>

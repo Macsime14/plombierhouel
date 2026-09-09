@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Public_Sans } from "next/font/google";
-import { siteConfig } from "@/lib/data/site-config";
 import "./globals.css";
 
 // Direction visuelle v2 : Public Sans (texte + données) / Bricolage Grotesque (titres).
@@ -17,12 +16,7 @@ const displayFont = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  title: {
-    default: `${siteConfig.companyName} — Plombier chauffagiste à ${siteConfig.areaDescription}`,
-    template: `%s | ${siteConfig.companyName}`,
-  },
-  description: `${siteConfig.companyName}, plombier chauffagiste à ${siteConfig.areaDescription} : dépannage, chauffage, pompe à chaleur, climatisation, sanitaires et rénovation. Devis gratuit.`,
-  metadataBase: new URL(siteConfig.url),
+  title: "Houel Plombier",
 };
 
 const themeInitScript = `

@@ -15,6 +15,13 @@
       "when": 1788891749643,
       "tag": "0001_abnormal_goblin_queen",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1788950535015,
+      "tag": "0002_broken_morlun",
+      "breakpoints": true
     }
   ]
 }

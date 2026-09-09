@@ -2,16 +2,21 @@ import Image from "next/image";
 import { Phone } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { siteConfig } from "@/lib/data/site-config";
-import { heroPhoto } from "@/lib/data/photos";
+import type { SiteData } from "@/lib/domain/site-data";
 
-export function Hero() {
+export function Hero({
+  phoneHref,
+  photo,
+}: {
+  phoneHref: string;
+  photo: SiteData["heroPhoto"];
+}) {
   return (
     <section>
       <div className="relative aspect-[3/2] w-full sm:aspect-[16/9] lg:aspect-[21/9]">
         <Image
-          src={heroPhoto.src}
-          alt={heroPhoto.alt}
+          src={photo.src}
+          alt={photo.alt}
           fill
           priority
           sizes="100vw"
@@ -32,11 +37,7 @@ export function Hero() {
             <Button href="/contact" className="w-full sm:w-auto">
               Demander un devis
             </Button>
-            <Button
-              href={siteConfig.phoneHref}
-              variant="secondary"
-              className="w-full sm:w-auto"
-            >
+            <Button href={phoneHref} variant="secondary" className="w-full sm:w-auto">
               <Phone size={16} />
               Appeler
             </Button>

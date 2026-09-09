@@ -1,11 +1,12 @@
 import type { MetadataRoute } from "next";
-import { siteConfig } from "@/lib/data/site-config";
+import { getSiteData } from "@/lib/domain/site-data";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const site = await getSiteData();
   const routes = ["", "/services", "/zone-intervention", "/contact"];
 
   return routes.map((route) => ({
-    url: `${siteConfig.url}${route}`,
+    url: `${site.url}${route}`,
     lastModified: new Date(),
   }));
 }
