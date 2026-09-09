@@ -19,7 +19,7 @@ export default async function Home() {
 
   return (
     <>
-      <Hero phoneHref={site.phoneHref} photo={site.heroPhoto} />
+      <Hero phoneHref={site.phoneHref} />
       <Reassurance />
       <About about={site.about} photo={site.aboutPhoto} />
 
