@@ -7,7 +7,7 @@ import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { contactSchema, type ContactFormValues } from "@/lib/validation/contactSchema";
 
 const fieldClass =
-  "mt-1 w-full border border-border bg-background px-3 py-2 text-sm text-text focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent";
+  "mt-1 w-full rounded-sm border border-border bg-background px-3 py-2 text-sm text-text focus-visible:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent";
 
 const serviceTypes = [
   "Dépannage",
@@ -73,7 +73,7 @@ export function ContactForm() {
             className={fieldClass}
             {...register("name")}
           />
-          {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>}
+          {errors.name && <p className="mt-1 text-sm text-danger">{errors.name.message}</p>}
         </div>
 
         <div>
@@ -86,7 +86,7 @@ export function ContactForm() {
             className={fieldClass}
             {...register("phone")}
           />
-          {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>}
+          {errors.phone && <p className="mt-1 text-sm text-danger">{errors.phone.message}</p>}
         </div>
       </div>
 
@@ -100,7 +100,7 @@ export function ContactForm() {
           className={fieldClass}
           {...register("email")}
         />
-        {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>}
+        {errors.email && <p className="mt-1 text-sm text-danger">{errors.email.message}</p>}
       </div>
 
       <div>
@@ -130,26 +130,26 @@ export function ContactForm() {
           className={fieldClass}
           {...register("message")}
         />
-        {errors.message && <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>}
+        {errors.message && <p className="mt-1 text-sm text-danger">{errors.message.message}</p>}
       </div>
 
       <button
         type="submit"
         disabled={isSubmitting}
-        className="inline-flex cursor-pointer items-center justify-center gap-2 bg-accent px-6 py-3 text-sm tracking-wide text-on-accent uppercase transition-colors hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+        className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-sm bg-accent-warm px-5 py-2.5 text-sm font-medium text-on-accent-warm transition-colors hover:bg-accent-warm-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-60"
       >
         {isSubmitting && <Loader2 size={16} className="animate-spin" />}
         Envoyer ma demande
       </button>
 
       {status === "success" && (
-        <p className="flex items-center gap-2 text-sm font-medium text-green-700">
+        <p className="flex items-center gap-2 text-sm font-medium text-success">
           <CheckCircle2 size={16} />
           Votre message a bien été envoyé, nous revenons vers vous rapidement.
         </p>
       )}
       {status === "error" && (
-        <p className="flex items-center gap-2 text-sm font-medium text-red-600">
+        <p className="flex items-center gap-2 text-sm font-medium text-danger">
           <AlertCircle size={16} />
           Une erreur est survenue, merci de réessayer ou de nous appeler directement.
         </p>

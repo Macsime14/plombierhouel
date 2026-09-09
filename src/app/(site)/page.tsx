@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
-import { Reveal } from "@/components/ui/Reveal";
+import { Button } from "@/components/ui/Button";
 import { Hero } from "@/components/sections/Hero";
 import { Reassurance } from "@/components/sections/Reassurance";
 import { About } from "@/components/sections/About";
@@ -17,101 +17,71 @@ import { siteConfig } from "@/lib/data/site-config";
 export default function Home() {
   return (
     <>
-      <Reveal>
-        <Hero />
-      </Reveal>
+      <Hero />
+      <Reassurance />
+      <About />
 
-      <Reveal>
-        <Reassurance />
-      </Reveal>
+      <section className="py-16 sm:py-24">
+        <Container>
+          <SectionTitle title="Ce que je fais" />
+          <div className="mt-10">
+            <ServicesList limit={4} />
+          </div>
+          <div className="mt-8">
+            <Link
+              href="/services"
+              className="group inline-flex items-center gap-2 text-sm text-accent transition-colors hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            >
+              Voir tous les services
+              <ArrowRight
+                size={16}
+                className="motion-safe:transition-transform motion-safe:group-hover:translate-x-1"
+              />
+            </Link>
+          </div>
+        </Container>
+      </section>
 
-      <Reveal>
-        <About />
-      </Reveal>
+      <section className="bg-surface py-16 sm:py-24">
+        <Container>
+          <SectionTitle title="Sur le terrain" />
+          <div className="mt-12">
+            <Realisations />
+          </div>
+        </Container>
+      </section>
 
-      <Reveal>
-        <section className="py-16 sm:py-24">
-          <Container>
-            <SectionTitle title="Ce que je fais" />
-            <div className="mt-10">
-              <ServicesList limit={4} />
-            </div>
-            <div className="mt-8">
-              <Link
-                href="/services"
-                className="group inline-flex items-center gap-2 text-sm text-accent transition-colors hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-              >
-                Voir tous les services
-                <ArrowRight
-                  size={16}
-                  className="motion-safe:transition-transform motion-safe:group-hover:translate-x-1"
-                />
-              </Link>
-            </div>
-          </Container>
-        </section>
-      </Reveal>
+      <ProcessSteps />
+      <Differentiators />
+      <Qualifications />
 
-      <Reveal>
-        <section className="bg-surface py-16 sm:py-24">
-          <Container>
-            <SectionTitle title="Sur le terrain" />
-            <div className="mt-12">
-              <Realisations />
-            </div>
-          </Container>
-        </section>
-      </Reveal>
+      <section className="py-16 sm:py-24">
+        <Container>
+          <SectionTitle title={`Nous intervenons à ${siteConfig.areaDescription}`} />
+          <div className="mt-8">
+            <InterventionZone />
+          </div>
+        </Container>
+      </section>
 
-      <Reveal>
-        <ProcessSteps />
-      </Reveal>
-
-      <Reveal>
-        <Differentiators />
-      </Reveal>
-
-      <Reveal>
-        <Qualifications />
-      </Reveal>
-
-      <Reveal>
-        <section className="py-16 sm:py-24">
-          <Container>
-            <SectionTitle title={`Nous intervenons à ${siteConfig.areaDescription}`} />
-            <div className="mt-8">
-              <InterventionZone />
-            </div>
-          </Container>
-        </section>
-      </Reveal>
-
-      <Reveal>
-        <section className="border-t border-border py-16 sm:py-24">
-          <Container className="text-center">
-            <h2 className="font-heading text-3xl font-semibold text-text sm:text-4xl">
-              Vous avez un projet ? Parlons-en.
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-text-muted">
-              Expliquez-moi votre besoin, je vous réponds rapidement.
-            </p>
-            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Link
-                href="/contact"
-                className="w-full cursor-pointer bg-accent px-6 py-3 text-center text-sm tracking-wide text-on-accent uppercase transition-colors hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 sm:w-auto"
-              >
-                Demander un devis
-              </Link>
-              <a
-                href={siteConfig.phoneHref}
-                className="w-full cursor-pointer border border-current px-6 py-3 text-center text-sm tracking-wide text-accent uppercase transition-colors hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:w-auto"
-              >
-                Appeler
-              </a>
-            </div>
-          </Container>
-        </section>
-      </Reveal>
+      <section className="border-t border-border py-16 sm:py-24">
+        <Container className="text-center">
+          <h2 className="font-heading text-3xl font-semibold text-text sm:text-4xl">
+            Vous avez un projet ? Parlons-en.
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-text-muted">
+            Expliquez-moi votre besoin, je vous réponds rapidement.
+          </p>
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Button href="/contact" className="w-full sm:w-auto">
+              Demander un devis
+            </Button>
+            <Button href={siteConfig.phoneHref} variant="secondary" className="w-full sm:w-auto">
+              Appeler
+            </Button>
+          </div>
+        </Container>
+      </section>
     </>
   );
 }

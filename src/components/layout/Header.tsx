@@ -66,9 +66,9 @@ export function Header() {
           </a>
           <Link
             href="/contact"
-            className="cursor-pointer border border-current px-4 py-2 text-sm tracking-wide text-accent uppercase transition-colors hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            className="cursor-pointer rounded-sm bg-accent-warm px-4 py-2 text-sm font-medium text-on-accent-warm transition-colors hover:bg-accent-warm-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
-            Devis
+            Demander un devis
           </Link>
         </div>
 
@@ -105,7 +105,7 @@ export function Header() {
             ))}
             <a
               href={siteConfig.phoneHref}
-              className="mt-2 flex cursor-pointer items-center justify-center gap-2 bg-accent px-4 py-3 text-sm tracking-wide text-on-accent uppercase"
+              className="mt-2 flex cursor-pointer items-center justify-center gap-2 rounded-sm bg-accent-warm px-4 py-3 text-sm font-medium text-on-accent-warm"
             >
               <Phone size={16} />
               {siteConfig.phone}
