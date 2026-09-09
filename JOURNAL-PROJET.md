@@ -172,10 +172,33 @@ Décision de construire un back-end : gestion des demandes, devis, planning et f
 
 ---
 
-## 12. État actuel du dépôt
+## 12. Refonte visuelle v2 (branche `v2-changement-dashboard`)
+
+Le tag **`1.0`** fige l'état complet avant refonte (site + back-end phases 0-3). Un brief de design (`docs/brief-design-site-plombier.md`) cadre la direction : sortir du rendu « template IA » (crème + terracotta + Playfair, qui était exactement la direction précédente), ancrer la palette dans le métier. Choix validés : palette **« Zinc & laiton »**, polices **Bricolage Grotesque** (titres) + **Public Sans** (texte), ton *fiable/rassurant + artisanal/soigné*.
+
+- **Étape 1 — tokens** : nouvelle palette (clair + sombre) et polices dans `globals.css` + `next/font`, en remplacement d'Inter / Playfair.
+- **Étape 2 — primitives** : `Button` en laiton (casse normale, rayon 2 px), `SectionTitle` sans eyebrow ni trait, suppression du composant `Reveal` (fin des apparitions au scroll), retrait des numéros décoratifs 01/02 hors séquence, purge des alias `neutral-*` / `font-playfair`.
+- **Étape 3 — tableau de bord** : `src/components/admin/ui.tsx` (`Bouton`, `Statut`, `PageTitre`), 5 tons de statut sémantiques (`*_STATUT_TONE`), tableau de bord recomposé (« à traiter » avec liseré de sévérité en tête, interventions du jour, un seul chiffre mis en avant, activité récente), logo dans la barre latérale admin.
+- **Étape 4 — site vitrine** : Hero photo pleine largeur + bandeau texte, `Reassurance` en ligne sobre au lieu d'un faux bloc de 4 chiffres, boutons du site en laiton, `ContactForm` aligné sur les tokens.
+- **Étape 5 — doc** : `design-system/houel-plombier/MASTER.md` réécrit pour la v2.
+
+Le visuel n'est **pas encore validé par Antoine**. Les photos sont toujours des placeholders Unsplash.
+
+L'ancien document `REFONTE DU SITE — DIRECTION ARTISTIQUE.md` (racine) est obsolète — remplacé par le brief + `MASTER.md`.
+
+---
+
+## 13. Piste SaaS multi-tenant (non engagée)
+
+Un audit de compatibilité SaaS multi-tenant a été fait (plusieurs artisans, chacun son site + son dashboard cloisonné). Conclusions : le cœur métier (moteur TVA, numérotation atomique, journal, cycle devis→facture) est déjà générique et réutilisable ; les deux chantiers lourds seraient **l'isolation des données par tenant** (préférer le RLS PostgreSQL de Supabase à un filtrage applicatif) et **la vitrine pilotée par la base** (aujourd'hui tout `src/lib/data/*.ts` est en dur). Décision : **ne rien engager tant qu'il n'y a pas un vrai 2ᵉ client**. Étape intermédiaire utile même à un seul client : rendre la vitrine éditable depuis le dashboard (contenu en base au lieu des fichiers `.ts`).
+
+---
+
+## 14. État actuel du dépôt
 
 - Dépôt GitHub : https://github.com/Macsime14/plombierhouel
-- Refonte visuelle **et** back-end en cours sur la branche **`nouveau-visu`** (non fusionnée dans `master`). Le visuel n'est pas encore validé par Antoine.
+- Back-end (phases 0-3) + refonte visuelle v2 sur la branche **`v2-changement-dashboard`**, partie du tag `1.0`. Non fusionné dans `master`.
+- Branche **`nouveau-visu`** conservée figée sur le tag `1.0` (filet de sécurité).
 - `master` reste sur `18a2b2f`.
 
 ---

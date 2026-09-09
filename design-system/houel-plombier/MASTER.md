@@ -1,112 +1,135 @@
-# Design System — Houel Plombier
+# Design system — Houel Plombier (v2)
 
-> Généré avec l'aide du skill `ui-ux-pro-max`, puis corrigé manuellement : la recherche automatique
-> a d'abord renvoyé une palette bleu corporate + une police "artisanat fait main" (Amatic SC) qui ne
-> correspondent pas au brief (architecture/artisan premium, sobre, chaleureux). Une recherche plus
-> ciblée sur "architecture/interior" et "editorial premium" a donné de bien meilleurs résultats,
-> repris ci-dessous. Les règles UX universelles (contraste, focus, spacing, checklist) viennent du
-> skill et s'appliquent telles quelles.
-
----
-
-## Couleurs
-
-### Mode clair (référence principale)
-
-| Rôle | Hex | Variable |
-|------|-----|----------|
-| Fond | `#FBF9F6` | `--background` |
-| Surface (sections alternées) | `#F3EFE8` | `--surface` |
-| Surface secondaire | `#EDE7DD` | `--surface-muted` |
-| Texte principal | `#211D18` | `--text` |
-| Texte secondaire | `#6B6459` | `--text-muted` |
-| Bordure | `#E2DBCD` | `--border` |
-| Accent (cuivre/bronze) | `#96601F` | `--accent` |
-| Sur accent | `#FFFFFF` | `--on-accent` |
-
-### Mode sombre (vraie variante, pas juste une inversion)
-
-| Rôle | Hex | Variable |
-|------|-----|----------|
-| Fond | `#111111` | `--background` |
-| Surface | `#181818` | `--surface` |
-| Surface secondaire | `#202020` | `--surface-muted` |
-| Texte principal | `#F2F0EA` | `--text` |
-| Texte secondaire | `#B8B5AE` | `--text-muted` |
-| Bordure | `#2C2C2C` | `--border` |
-| Accent (bronze éclairci pour le contraste) | `#D4A045` | `--accent` |
-| Sur accent | `#111111` | `--on-accent` |
-
-**Pourquoi ce choix :** issu du résultat "Architecture/Interior" du skill (anthracite + accent doré/bronze,
-`#A16207` ajusté), qui correspond bien plus au brief "artisanat haut de gamme, architecture, matériaux"
-que la palette bleu générique proposée par défaut. L'accent est éclairci en mode sombre (règle du skill :
-*"Dark mode uses desaturated/lighter tonal variants, not inverted colors"*).
+> Direction visuelle **« Zinc & laiton »**, en place depuis la refonte v2 (branche
+> `v2-changement-dashboard`). Elle remplace la direction « artisan premium » (crème + bronze
+> + Playfair Display) qui reproduisait le rendu générique décrit dans
+> [`docs/brief-design-site-plombier.md`](../../docs/brief-design-site-plombier.md).
+>
+> Implémentation : `src/app/globals.css` (`:root` + `.dark` + bloc `@theme inline`).
+> Toute couleur ou police vient d'un token ; rien n'est codé en dur dans les composants.
 
 ---
 
-## Typographie
+## 1. Intention
 
-- **Titres :** Playfair Display (serif éditorial, élégant, évoque l'architecture/le premium sans être "startup")
-- **Texte courant :** Inter (déjà en place, très lisible, neutre)
-- Deux familles maximum, conforme au brief.
-
-**Pourquoi ce choix :** résultat "Classic Elegant" du skill (Playfair Display + Inter), taggé
-"editorial, magazines, high-end" — beaucoup plus proche du brief que la paire "Amatic SC / Cabin"
-(indie/fait main) proposée par défaut, qui aurait donné un rendu artisanal enfantin plutôt que premium.
-
-### Échelle de tailles
-
-`14 / 16 / 18 / 20 / 24 / 32 / 40 / 56` px — cohérente sur tout le site, pas de tailles arbitraires.
+Ancrer l'identité dans les **matières du métier** — le zinc des toitures et de la
+tuyauterie, le laiton des raccords — plutôt que dans un choix de template. Ton visé :
+**fiable / rassurant + artisanal / soigné**. Une seule audace visuelle par écran, le reste
+sobre.
 
 ---
 
-## Espacements
+## 2. Couleurs
 
-`4 / 8 / 16 / 24 / 32 / 48 / 64 / 96` px — rythme éditorial : sections importantes = beaucoup
-d'espace, éléments liés = rapprochés (déjà la logique Tailwind par défaut qu'on utilise).
+### Rôles structurants
+
+| Rôle | Token | Clair | Sombre |
+|---|---|---|---|
+| Fond | `--background` | `#f5f6f7` | `#14181c` |
+| Surface (sections alternées, tableaux) | `--surface` | `#ecedf0` | `#1b2127` |
+| Surface secondaire | `--surface-muted` | `#e3e5e9` | `#232a31` |
+| Texte principal | `--text` | `#1f2933` | `#e6eaec` |
+| Texte secondaire | `--text-muted` | `#5a6773` | `#98a4ad` |
+| Filet / bordure | `--border` | `#dbdfe3` | `#2d363d` |
+
+### Accents
+
+| Rôle | Token | Clair | Sombre | Usage |
+|---|---|---|---|---|
+| **Zinc** (structurant) | `--accent` / `--accent-hover` / `--on-accent` | `#3e4c59` | `#8b99a6` | Liens, focus, états actifs, navigation, boutons secondaires |
+| **Laiton** (chaud) | `--accent-warm` / `--accent-warm-hover` / `--on-accent-warm` | `#8a6a1c` | `#c6a653` | Bouton primaire, montants clés (ex. encaissé du mois), marqueurs d'urgence |
+
+Le laiton est **assombri** par rapport au laiton pur (`#a8842c`) pour tenir le contraste
+AA du texte blanc sur le bouton. En sombre, le bouton laiton s'éclaircit et le texte
+devient sombre (`--on-accent-warm`).
+
+### Sémantiques génériques
+
+`--success` (`#40745a` / `#6fae86`), `--danger` (`#a83a2e` / `#d98878`). Pour du texte
+d'état simple (message d'erreur, validation).
 
 ---
 
-## Bordures et rayons
+## 3. Tons de statut
 
-Rayons minimaux (`2px` à `4px` maximum) — pas de `rounded-2xl`/`rounded-full` sur les gros éléments.
-Le style repose sur des **lignes fines** et des bordures plutôt que sur l'arrondi ou l'ombre.
+Cinq tons pour les pastilles de statut (devis, factures, demandes, interventions),
+**distincts des accents** (règle du brief). Chaque ton = une paire bg / fg déclinée
+clair + sombre : `--tone-<ton>-bg` / `--tone-<ton>-fg`.
 
-## Ombres
+| Ton | Sens | Exemples de statut |
+|---|---|---|
+| `neutre` | Sans enjeu | Brouillon |
+| `info` | En cours, en attente | Envoyé, Vu, Émise, Planifiée, Nouveau |
+| `attention` | Action attendue / échéance | À rappeler, Expiré, Payée en partie, En cours |
+| `positif` | Abouti | Accepté, Payée, Gagné, Terminée |
+| `negatif` | Refus / annulation | Refusé, Annulée, Perdu |
 
-Quasi absentes. Une bordure fine (`1px`, `--border`) remplace la carte-avec-ombre par défaut.
-Ombre très subtile réservée aux éléments réellement flottants (ex. menu mobile ouvert).
-
----
-
-## Composants
-
-- **Boutons :** rectangulaires (rayon minimal), texte en petites majuscules espacées, pas de gros
-  padding ni d'ombre. Primaire = fond accent ; secondaire = bordure fine + texte accent.
-- **Cartes :** évitées par défaut (le brief interdit les grilles de cartes identiques). Quand un
-  regroupement est nécessaire, bordure fine plutôt que fond + ombre.
-- **Inputs :** bordure fine, focus = anneau 2px couleur accent, `outline-offset: 2px`.
-- **États focus :** visibles partout (anneau 2px, contraste ≥ 3:1 — règle WCAG 2.2 AAA du skill).
-- **Icônes :** Lucide, usage minimal et seulement quand elles apportent un vrai sens (pas d'icône
-  décorative systématique à côté de chaque titre).
+Le mapping statut → ton vit dans `src/lib/admin/*-statuts.ts` (`*_STATUT_TONE`).
+Rendu par le composant `<Statut tone="…">` (`src/components/admin/ui.tsx`).
 
 ---
 
-## Checklist qualité (issue du skill, à valider avant livraison)
+## 4. Typographie
 
-- [ ] Aucun emoji comme icône
-- [ ] `cursor-pointer` sur tous les éléments cliquables
-- [ ] Transitions douces (150–300ms) sur les états hover
-- [ ] Contraste texte ≥ 4.5:1 dans les deux thèmes (vérifié séparément, pas supposé)
-- [ ] États focus visibles au clavier partout
-- [ ] `prefers-reduced-motion` respecté
-- [ ] Responsive testé à 375 / 768 / 1024 / 1440px
-- [ ] Zones tactiles ≥ 44×44px sur mobile
-- [ ] Pas de contenu masqué sous le header sticky
-- [ ] Pas de scroll horizontal sur mobile
+- **Titres** : **Bricolage Grotesque** (`--font-display` / classe `font-heading`).
+  Grotesque contemporain aux détails singuliers — porte la personnalité.
+- **Texte et données** : **Public Sans** (`--font-sans`). Très lisible, neutre, sans
+  passif « startup ». Utiliser `tabular-nums` pour les colonnes de chiffres
+  (montants, dates, quantités).
+- Chargées via `next/font/google` dans `src/app/layout.tsx`. Deux familles, pas plus.
 
-## Anti-patterns à éviter explicitement
+**Interdits** (rappel du brief) : eyebrow décoratif au-dessus des titres, labels en
+capitales par défaut, un seul mot accentué dans un titre.
 
-Grilles de 3 cartes identiques avec icône au-dessus · dégradés décoratifs · glassmorphism ·
-ombres excessives · boutons surdimensionnés · animations permanentes · même composant répété sans
-variation entre les sections.
+---
+
+## 5. Formes
+
+- **Rayons** : `rounded-sm` (2 px) sur les boutons, pastilles, champs. Pas de
+  `rounded-lg` / `rounded-full` sur les gros éléments — le style tient sur les filets.
+- **Ombres** : quasi absentes. Une bordure `1px` (`--border`) remplace la carte-ombre.
+- **Cartes** : évitées par défaut. Regroupement = bordure fine, ou liste `divide-y` /
+  `border-t`. Pas de grille de cartes identiques.
+- **Liseré de sévérité** : bordure gauche 2 px colorée sur les lignes « à traiter » du
+  tableau de bord (`border-[var(--tone-…-fg)]`).
+
+---
+
+## 6. Composants de référence
+
+| Composant | Fichier | Rôle |
+|---|---|---|
+| `Button` | `src/components/ui/Button.tsx` | Bouton du site public. `primary` = laiton, `secondary` = filet. |
+| `Bouton` | `src/components/admin/ui.tsx` | Équivalent admin (lien ou `<a>` fichier). `primary` / `ghost`. |
+| `Statut` | `src/components/admin/ui.tsx` | Pastille de statut à ton sémantique. |
+| `PageTitre` | `src/components/admin/ui.tsx` | En-tête de page admin (titre + description + action). |
+| `SectionTitle` | `src/components/ui/SectionTitle.tsx` | Titre de section du site (titre + description, sans eyebrow ni trait). |
+| `LignesEditor` | `src/components/admin/LignesEditor.tsx` | Éditeur de lignes partagé devis / factures. |
+| `Field` / `SelectField` / `TextAreaField` / `CheckboxField` / `SubmitButton` | `src/components/admin/form.tsx` | Champs de formulaire admin, une seule définition. |
+
+---
+
+## 7. Motion
+
+- Pas d'animation d'apparition au scroll (le composant `Reveal` a été supprimé).
+- Le mouvement répond à une action : `hover` sur les liens et cartes cliquables
+  (transition `colors` 150 ms), léger zoom sur les photos au survol.
+- `prefers-reduced-motion` respecté (`motion-safe:` sur les zooms).
+
+---
+
+## 8. Checklist avant de valider un écran
+
+- [ ] Aucune valeur de couleur / police en dur — tout passe par un token.
+- [ ] Contraste texte ≥ 4.5:1 dans les deux thèmes (vérifié, pas supposé).
+- [ ] Focus clavier visible partout (`focus-visible:ring-2 ring-accent`).
+- [ ] `cursor-pointer` sur tout ce qui est cliquable.
+- [ ] Un seul élément porte l'audace visuelle, le reste reste sobre.
+- [ ] Numérotation (01/02) seulement si c'est une vraie séquence (ex. « Comment je travaille »).
+- [ ] Statut encodé en forme **et** en couleur (pastille `<Statut>`), pas juste un mot.
+- [ ] Responsive testé à 375 / 768 / 1024 px, pas de scroll horizontal, zones tactiles ≥ 44 px.
+
+---
+
+*À mettre à jour au fil des décisions. Le brief (`docs/brief-design-site-plombier.md`)
+reste la référence de principe ; ce document décrit l'implémentation.*

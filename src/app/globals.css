@@ -2,8 +2,8 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* Direction visuelle v2 — palette « Zinc & laiton », typo Bricolage Grotesque + Public Sans.
-   Voir docs/brief-design-site-plombier.md. Le design-system/ décrit encore l'ancienne
-   direction : à réécrire une fois la v2 posée. */
+   Référence de principe : docs/brief-design-site-plombier.md
+   Implémentation détaillée : design-system/houel-plombier/MASTER.md */
 :root {
   --background: #f5f6f7;
   --surface: #ecedf0;

@@ -1,6 +1,6 @@
-// TODO: remplacer toutes ces photos Unsplash (libres de droits, provisoires) par de vraies photos
-// des chantiers et d'Antoine dès qu'il pourra les fournir. Voir REFONTE_DESIGN.md section 20 :
-// priorité absolue aux vraies photos (Antoine, chantiers, véhicule, outils).
+// TODO: remplacer toutes ces photos Unsplash (libres de droits, provisoires) par de vraies
+// photos des chantiers et d'Antoine dès qu'il pourra les fournir (Antoine, chantiers,
+// véhicule, outils). Priorité pour crédibiliser le site.
 function unsplash(id: string, width: number) {
   return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=80`;
 }
